@@ -1,0 +1,105 @@
+<app-header nameComponent="Holos Odontologia"> </app-header>
+<ion-content class="bg-theme">
+  <ion-content >
+    <div class="home-bg"></div>
+    <ion-grid size="11" size-sm="10">
+      <ion-row>
+        <ion-col size="12">
+          <img
+            src="../../../assets/Holos/holos-logo.png"
+            alt="logo"
+            class="logo"
+          />
+        </ion-col>
+
+        <ion-col size="12">
+          <h1 class="heading-text">Holos Odontologia</h1>
+          <p class="sub-text">Clínica de Cuidados Dentais</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <ion-card routerLink="/about">
+            <ion-card-content>
+              <ion-icon name="medkit-outline"></ion-icon>
+             
+              <p>Sobre nós</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card routerLink="/services">
+            <ion-card-content>
+              <ion-icon name="bandage-outline"></ion-icon>
+              <p>Serviços</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card routerLink="/appointment">
+            <ion-card-content>
+              <ion-icon name="documents-outline"></ion-icon>
+              <p>Agendamento</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card routerLink="/blog">
+            <ion-card-content>
+              <ion-icon name="chatbubbles-outline"></ion-icon>
+              <p>Blog</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card routerLink="/testimonials">
+            <ion-card-content>
+              <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+              <p>Testemunhos</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card routerLink="/gallery">
+            <ion-card-content>
+              <ion-icon name="image-outline"></ion-icon>
+              <p>Galeria</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card routerLink="/availability">
+            <ion-card-content>
+              <ion-icon name="calendar-outline"></ion-icon>
+              <p>Disponibilidade</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card routerLink="/reachus">
+            <ion-card-content>
+              <ion-icon name="map-outline"></ion-icon>
+              <p>Visite</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4">
+          <ion-card routerLink="/contact">
+            <ion-card-content>
+              <ion-icon name="call-outline"></ion-icon> 
+              <p>Contato</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="12">
+          <ion-button
+            expand="block"
+            class="btn-theme-big-red"
+            routerLink="/bookappointment"
+            >Agendar uma consulta
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-content>

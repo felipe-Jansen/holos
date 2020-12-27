@@ -1,0 +1,72 @@
+<ion-grid>
+  <ion-row>
+    <ion-col class="ion-text-center">
+      <app-hour-card
+        [selectedHour]="actualHour"
+        [hour]="'10:00 AM'"
+        (hourEmitter)="receiveHour($event)"
+      ></app-hour-card>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <app-hour-card
+        [selectedHour]="actualHour"
+        [hour]="'11:00 AM'"
+        (hourEmitter)="receiveHour($event)"
+      ></app-hour-card>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <app-hour-card
+        [selectedHour]="actualHour"
+        [hour]="'12:00 AM'"
+        (hourEmitter)="receiveHour($event)"
+      ></app-hour-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="ion-text-center">
+      <app-hour-card
+        [selectedHour]="actualHour"
+        [hour]="'01:30 PM'"
+        (hourEmitter)="receiveHour($event)"
+      ></app-hour-card>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <app-hour-card
+        [selectedHour]="actualHour"
+        [hour]="'02:15 PM'"
+        (hourEmitter)="receiveHour($event)"
+      ></app-hour-card>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <app-hour-card
+        [selectedHour]="actualHour"
+        [hour]="'03:00 PM'"
+        (hourEmitter)="receiveHour($event)"
+      ></app-hour-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="ion-text-center">
+      <app-hour-card
+        [selectedHour]="actualHour"
+        [hour]="'04:00 PM'"
+        (hourEmitter)="receiveHour($event)"
+      ></app-hour-card>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <app-hour-card
+        [selectedHour]="actualHour"
+        [hour]="'05:00 PM'"
+        (hourEmitter)="receiveHour($event)"
+      ></app-hour-card>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <app-hour-card
+        [selectedHour]="actualHour"
+        [hour]="'06:00 PM'"
+        (hourEmitter)="receiveHour($event)"
+      ></app-hour-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

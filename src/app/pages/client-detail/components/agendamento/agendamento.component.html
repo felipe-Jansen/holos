@@ -1,0 +1,30 @@
+<section>
+  <div class="card" *ngFor="let item of agendamento">
+    <div class="info situacao">
+      <h4>Situação:</h4>
+      <p>
+        {{ item.situacao }}
+      </p>
+    </div>
+    <div class="info tipo">
+      <h4>Tipo:</h4>
+      <p>{{ item.tipo }}</p>
+    </div>
+    <div class="info inicio">
+      <h4>Ínicio:</h4>
+      <p>{{ item.inicio }}</p>
+    </div>
+    <div class="info termino">
+      <h4>Término:</h4>
+      <p>{{ item.termino }}</p>
+    </div>
+    <div class="info profissional">
+      <h4>Profissional:</h4>
+      <p>{{ item.profissional }}</p>
+    </div>
+    <div class="info obs">
+      <h4>Observação:</h4>
+      <p>{{ item.obs }}</p>
+    </div>
+  </div>
+</section>

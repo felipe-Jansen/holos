@@ -1,0 +1,45 @@
+<form (ngSubmit)="bookApointment()" style="width: 100%" #apointmentForm="ngForm">
+  <ion-card class="bg-theme">
+    <ion-list>
+      <ion-item class="bg-theme">
+        <ion-label position="stacked">Nome Completo</ion-label>
+        <ion-input
+          #nameV="ngModel"
+          [(ngModel)]="name"
+          required
+          name="name"
+          type="text"
+        ></ion-input>
+      </ion-item>
+      <div *ngIf="nameV.invalid && (nameV.dirty || nameV.touched)">
+        <p class="error-message" color="danger" *ngIf="nameV.errors.required">
+          Campo obrigatório!
+        </p>
+      </div>
+    </ion-list>
+    <ion-list class="mg-bottom">
+      <ion-item class="bg-theme">
+        <ion-label position="stacked">Número</ion-label>
+        <ion-input
+          #phoneV="ngModel"
+          [(ngModel)]="phone"
+          required
+          name="phone"
+          type="text"
+        ></ion-input>
+      </ion-item>
+      <div *ngIf="phoneV.invalid && (phoneV.dirty || phoneV.touched)">
+        <p class="error-message" color="danger" *ngIf="phoneV.errors.required">
+          Campo obrigatório!
+        </p>
+      </div>
+    </ion-list>
+    <ion-button
+      [disabled]="!apointmentForm.form.valid"
+      type="submit"
+      expand="block"
+      class="btn-theme-big-red"
+      >Próximo</ion-button
+    >
+  </ion-card>
+</form>

@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pacientes</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openFirebaseCreateModal()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar class="filters-toolbar">
+    <ion-row class="searchbar-row" align-users-center>
+      <ion-col>
+        <ion-searchbar class="users-searchbar" animated [(ngModel)]="searchQuery" (ionChange)="searchClient()" placeholder="Filtre por nome..."></ion-searchbar>
+      </ion-col>
+      <ion-col class="call-to-action-col">
+        <ion-button fill="clear" class="filters-btn" (click)="showAgeFilter = !showAgeFilter">
+          <ion-icon slot="icon-only" name="options"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="firebase-listing-content">
+  <ion-list class="users-list" *ngIf="users?.length > 0">
+    <ion-item class="list-item" *ngFor="let user of users" [routerLink]="['/client-detail', user.id]">
+      <ion-row class="user-row">
+        <ion-col size="3" class="user-image-wrapper">
+          <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+            <app-image-shell class="user-image" animation="spinner" [src]="user.foto" [alt]="'user image'"></app-image-shell>
+          </app-aspect-ratio>
+        </ion-col>
+        <ion-col class="user-data-wrapper">
+          <div class="user-info">
+            <h3 class="user-name">
+              <app-text-shell animation="bouncing" [data]="user.nome"></app-text-shell>
+            </h3>
+            <h5 class="user-age">
+              <app-text-shell animation="bouncing" [data]="user.cpf"></app-text-shell>
+            </h5>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll threshold="50px" (ionInfinite)="nextPage($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Carregando pacientes..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <h3 *ngIf="users?.length == 0" class="empty-list-message">
+    Não foram encontrados usuários com esses filtros. 
+  </h3>
+</ion-content>

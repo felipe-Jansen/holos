@@ -1,0 +1,58 @@
+section {
+  --inner-padding-start: 0px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 30px;
+  .card {
+    margin: 20px 0;
+    display: grid;
+    padding: 10px;
+    height: 300px;
+    border-radius: 4px;
+    grid-template-columns: repeat(3, 1fr);
+    box-shadow: 1px 1px 15px -10px black;
+    grid-template-rows: 70px 70px auto;
+    grid-template-areas:
+      "situacao tipo ."
+      "inicio termino profissional"
+      "obs obs obs";
+    .situacao {
+      grid-area: situacao;
+    }
+    .tipo {
+      grid-area: tipo;
+    }
+    .inicio {
+      grid-area: inicio;
+    }
+    .termino {
+      grid-area: termino;
+    }
+    .profissional {
+      grid-area: profissional;
+    }
+    .obs {
+      grid-area: obs;
+    }
+    --inner-padding-start: 0px;
+    .info {
+      h4 {
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 0px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.text-green {
+  color: var(--ion-color-success-shade);
+}
+
+.text-red {
+  color: var(--ion-color-danger-shade);
+}

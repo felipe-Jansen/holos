@@ -1,0 +1,93 @@
+<app-header nameComponent="Confirmar Consulta"> </app-header>
+
+<ion-content>
+  <ion-content class="bg-theme">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-card class="bg-theme">
+            <h2>Qual o tipo da Consulta?</h2>
+          </ion-card>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <app-confirm-card
+            [selectedType]="choosedTypeApointment"
+            [type]="'Limpeza'"
+            (choosedType)="setTypeApointment($event)"
+          ></app-confirm-card>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <app-confirm-card
+            [selectedType]="choosedTypeApointment"
+            [type]="'Clareamento'"
+            (choosedType)="setTypeApointment($event)"
+          ></app-confirm-card>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <app-confirm-card
+            [selectedType]="choosedTypeApointment"
+            [type]="'Aparelho'"
+            (choosedType)="setTypeApointment($event)"
+          ></app-confirm-card>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <app-confirm-card
+            [selectedType]="choosedTypeApointment"
+            [type]="'Coroa'"
+            (choosedType)="setTypeApointment($event)"
+          >
+          </app-confirm-card>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <app-confirm-card
+            [selectedType]="choosedTypeApointment"
+            [type]="'Ponte'"
+            (choosedType)="setTypeApointment($event)"
+          ></app-confirm-card>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <app-confirm-card
+            [selectedType]="choosedTypeApointment"
+            [type]="'Extração'"
+            (choosedType)="setTypeApointment($event)"
+          ></app-confirm-card>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <app-confirm-card
+            [selectedType]="choosedTypeApointment"
+            [type]="'Cosméticos'"
+            (choosedType)="setTypeApointment($event)"
+          ></app-confirm-card>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <app-confirm-card
+            [selectedType]="choosedTypeApointment"
+            [type]="'Facetas'"
+            (choosedType)="setTypeApointment($event)"
+          ></app-confirm-card>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <app-confirm-card
+            [selectedType]="choosedTypeApointment"
+            [type]="'Canal'"
+            (choosedType)="setTypeApointment($event)"
+          ></app-confirm-card>
+        </ion-col>
+        <ion-col size="12">
+          <ion-input [(ngModel)]="otherProblem" class="ion-padding" placeholder="Outro problema..."></ion-input>
+        </ion-col>
+        <ion-col size="12" class="ion-text-center">
+          <ion-card>
+            <ion-button
+              (click)="sendWhatsapp()"
+              expand="block"
+              class="btn-theme-big-red"
+              style="margin: 0"
+              >Confirmar</ion-button
+            >
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-content>

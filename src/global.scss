@@ -1,0 +1,136 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+/*font css*/ 
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+/** Basic CSS for Ionic Apps */
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+
+/** Optional CSS utilities that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@import "theme/shell-defaults.scss";
+@import "theme/app-defaults.scss";
+
+*{
+    font-family: 'Montserrat', sans-serif ;
+}
+
+html{
+    font-size: 12px;
+}
+
+ion-back-button{
+    --color: black;
+    display: block;
+}
+
+ion-grid{
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media(min-width: 767px){
+    ion-grid{
+        width: 90%;
+       
+    }
+}
+
+ion-title{
+    font-size: 1.3rem;
+}
+
+.toolbar-background{
+    background: #fff !important;
+}
+
+#map{
+    min-height: 100%;
+}
+
+.form-theme{
+    width: 100%;
+    display: block;
+    .input{
+        background: #eaeaea;
+        border: 0px;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        --color: #999;
+        --padding-bottom: 15px;
+        --padding-top: 15px;
+    }
+    .text-input{
+        color: #c0c0c0;
+    }
+}
+
+
+.btn-theme-big-red{
+    height: 3.5rem !important;
+    &.button {
+        background-color: var(--holos-blue);
+        --background: var(--holos-blue);
+        text-transform: none;
+        border-radius: 5px;
+    }
+}
+.btn-theme-big-white{
+    height: 3.5rem !important;
+    &.button {
+        --background: #fff;
+        background-color: #fff;
+        --color:var(--holos-blue);
+        text-transform: none;
+        border-radius: 5px;
+    }
+}
+.toolbar-title{
+    font-size: 1.6rem !important;
+}
+.bg-theme{
+    background: #f9f9f9;
+    --background: #f9f9f9;
+}
+.bg-white{
+    background: white;
+    --background: #fff;
+}
+.text-red{
+    color:var(--holos-blue) !important;
+}
+.bg-red{
+    background: var(--holos-blue) !important;
+}
+.text-white{
+    color: #fff  !important;
+}
+
+ion-item{
+    --padding-start: 0px;
+}
+

@@ -1,0 +1,26 @@
+section{
+  margin-top: 30px;
+}
+ion-grid {
+    width: 95%;
+    padding: 0 !important;
+  }
+  ion-card {
+    margin: 0 !important;
+    width: 100% !important;
+    height: 150px;
+    border-radius: 10px !important;
+    ion-card-content {
+      padding: 0 !important;
+    }
+  }
+  .row {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+    .col {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-bottom: 1rem;
+      padding-top: 1rem;
+    }
+  }

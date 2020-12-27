@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="homepage"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes Paciente</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentUpdateModal()"> Editar </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-segment (ionChange)="changeInfoTab($event)" value="info">
+    <ion-segment-button value="info">
+      <ion-label>Info</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="anexo">
+      <ion-label>Anexos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="agenda">
+      <ion-label>Agenda</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content class="user-content">
+  
+  <section [ngSwitch]="section">
+    <ion-row class="user-info-row" *ngSwitchCase="'info'">
+      <ion-col class="user-image-col" size="5">
+        <app-aspect-ratio [ratio]="{ w: 1, h: 1 }">
+          <app-image-shell
+            [display]="'cover'"
+            class="user-image"
+            animation="spinner"
+            [src]="client?.foto"
+            [alt]="'client image'"
+          >
+          </app-image-shell>
+        </app-aspect-ratio>
+      </ion-col>
+      <ion-col class="user-details-col" size="12">
+        <h2 class="user-name">
+          <app-text-shell
+            animation="bouncing"
+            [data]="client?.nome"
+          ></app-text-shell>
+        </h2>
+        <span class="user-age">
+          <app-text-shell
+            animation="bouncing"
+            [data]="client?.whatsapp"
+          ></app-text-shell>
+        </span>
+      </ion-col>
+      <ion-col class="actions-col" size="12">
+        <ion-row>
+          <ion-col size="3">
+            <ion-button class="action-btn" color="secondary">
+              <ion-icon class="btn-icon" slot="icon-only" name="mail"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button class="action-btn" color="secondary">
+              <ion-icon class="btn-icon" slot="icon-only" name="call"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button class="action-btn" color="secondary">
+              <ion-icon
+                class="btn-icon"
+                slot="icon-only"
+                name="videocam"
+              ></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button class="action-btn" color="secondary">
+              <ion-icon class="btn-icon" slot="icon-only" name="text"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="12" class="client-info">
+        <ion-row>
+          <h4>CPF:</h4>
+          <p>{{ client?.cpf }}</p>
+        </ion-row>
+        <ion-row>
+          <h4>RG:</h4>
+          <p>{{ client?.rg }}</p>
+        </ion-row>
+        <ion-row>
+          <h4>UF:</h4>
+          <p>{{ client?.uf }}</p>
+        </ion-row>
+        <ion-row>
+          <h4>Cidade:</h4>
+          <p>{{ client?.cidade }}</p>
+        </ion-row>
+        <ion-row>
+          <h4>Endereço:</h4>
+          <p>{{ client?.endereco }}</p>
+        </ion-row>
+        <ion-row>
+          <h4>Email:</h4>
+          <p>{{ client?.email }}</p>
+        </ion-row>
+        <ion-row>
+          <h4>Sexo:</h4>
+          <p>{{ client?.sexo }}</p>
+        </ion-row>
+  
+        <ion-row>
+          <h4>Data de Nascimento:</h4>
+          <p>{{ client?.nascimento }}</p>
+        </ion-row>
+       
+      </ion-col>
+    </ion-row>
+
+    <app-agendamento *ngSwitchCase="'agenda'" [agendamento]="client?.agenda">
+
+    </app-agendamento>
+    <app-anexos *ngSwitchCase="'anexo'" [anexos]="client?.anexos"> </app-anexos>
+  </section>
+ 
+</ion-content>

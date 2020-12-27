@@ -1,0 +1,31 @@
+.date-row {
+    width: 100%;
+    ion-segment-button{
+        min-width: auto;
+    }
+    .month {
+      font-size: 1rem !important;
+      color: #999;
+      margin-top: 0px;
+      padding-top: 10px;
+    }
+    .date {
+      font-size: 1.8rem;
+      color: #222;
+      --color-checked: var(--holos-blue);
+      small {
+        font-size: 0.9rem !important;
+        color: #999;
+        display: block;
+        padding-bottom: 1.5rem;
+        margin: auto;
+        border-bottom: 3px solid #fff;
+        margin-bottom: -0.5rem;
+      }
+      &.active {
+        small {
+          border-bottom: 3px solid var(--holos-blue);
+        }
+      }
+    }
+  }

@@ -1,0 +1,26 @@
+<app-header nameComponent="Marcar Consulta"> </app-header>
+
+<ion-content>
+  <ion-content class="bg-theme">
+    <app-day (choosedDayEmitter)="receiveDay($event)"></app-day>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <h2>Horários Disponíveis</h2>
+        </ion-col>
+        <ion-col size="12">
+          <app-hours (choosedHourEmitter)="receiveHour($event)"></app-hours>
+        </ion-col>
+
+        <ion-col size="12">
+          <h2>Consulta para:</h2>
+        </ion-col>
+        <ion-col size="12">
+          <app-apointment-form
+            (formEmitter)="receiveFormData($event)"
+          ></app-apointment-form>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-content>

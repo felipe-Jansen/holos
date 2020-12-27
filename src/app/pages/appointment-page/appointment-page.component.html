@@ -1,0 +1,187 @@
+<app-header nameComponent="Marcar Consulta">
+</app-header>
+<ion-content class="bg-theme">
+  <div class="apont-row bg-white">
+    <ion-grid>
+      <ion-segment [(ngModel)]="appointment">
+        <ion-segment-button value="coming">
+          <ion-label> Próximas</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="past">
+          <ion-label>Anteriores</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-grid>
+  </div>
+  <ion-grid>
+    <div>
+      <div [ngSwitch]="appointment">
+        <ion-list *ngSwitchCase="'coming'">
+          <ion-card>
+            <ion-row>
+              <ion-col size="3" class="ion-text-center">
+                <h2>
+                  <small>Julho</small>
+                  <span>12</span>
+                  <small>QUA</small>
+                </h2>
+              </ion-col>
+              <ion-col size="9">
+                <ion-row>
+                  <ion-col size="8">
+                    <p>Horário</p>
+                    <h3>5:00 PM</h3>
+                  </ion-col>
+                  <ion-col size="4">
+                    <p>Para</p>
+                    <h3>Eu</h3>
+                  </ion-col>
+                </ion-row>
+                <hr />
+                <ion-row>
+                  <ion-col size="8">
+                    <p>Tipo</p>
+                    <h3>Preenchimento</h3>
+                  </ion-col>
+                  <ion-col size="4" class="select">
+                    <ion-label>Opções</ion-label>
+                    <div class="options">
+                      <span>Editar Consulta</span>
+                      <span>Cancelar Consulta</span>
+                      <span>Adicionar ao calendário</span>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+          <ion-card>
+            <ion-row>
+              <ion-col size="3" class="ion-text-center">
+                <h2>
+                  <small>Julho</small>
+                  <span>19</span>
+                  <small>QUA</small>
+                </h2>
+              </ion-col>
+              <ion-col size="9">
+                <ion-row>
+                  <ion-col size="8">
+                    <p>Horário</p>
+                    <h3>5:00 PM</h3>
+                  </ion-col>
+                  <ion-col size="4">
+                    <p>Para</p>
+                    <h3>Juliana</h3>
+                  </ion-col>
+                </ion-row>
+                <hr />
+                <ion-row>
+                  <ion-col size="8">
+                    <p>Tipo de Consulta</p>
+                    <h3>Canal</h3>
+                  </ion-col>
+                  <ion-col size="4" class="select">
+                    <ion-label>Opções</ion-label>
+                    <div class="options">
+                      <span>Editar Consulta</span>
+                      <span>Cancelar Consulta</span>
+                      <span>Adicionar ao calendário</span>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-list>
+        <ion-list *ngSwitchCase="'past'">
+          <ion-card>
+            <ion-row>
+              <ion-col size="3" class="ion-text-center">
+                <h2>
+                  <small>Julho</small>
+                  <span>29</span>
+                  <small>QUA</small>
+                </h2>
+              </ion-col>
+              <ion-col size="9">
+                <ion-row>
+                  <ion-col size="8">
+                    <p>Horário</p>
+                    <h3>5:00 PM</h3>
+                  </ion-col>
+                  <ion-col size="4">
+                    <p>Para</p>
+                    <h3>Juliana</h3>
+                  </ion-col>
+                </ion-row>
+                <hr />
+                <ion-row>
+                  <ion-col size="8">
+                    <p>Tipo de Consulta</p>
+                    <h3>Canal</h3>
+                  </ion-col>
+                  <ion-col size="4" class="select">
+                    <ion-label>Opções</ion-label>
+                    <div class="options past">
+                      <span>Remarcar</span>
+                      <span>Remover</span>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+          <ion-card>
+            <ion-row>
+              <ion-col size="3" class="ion-text-center">
+                <h2>
+                  <small>Julho</small>
+                  <span>29</span>
+                  <small>QUA</small>
+                </h2>
+              </ion-col>
+              <ion-col size="9">
+                <ion-row>
+                  <ion-col size="8">
+                    <p>Horário</p>
+                    <h3>5:00 PM</h3>
+                  </ion-col>
+                  <ion-col size="4">
+                    <p>Para</p>
+                    <h3>Juliana</h3>
+                  </ion-col>
+                </ion-row>
+                <hr />
+                <ion-row>
+                  <ion-col size="8">
+                    <p>Tipo de Consulta</p>
+                    <h3>Canal</h3>
+                  </ion-col>
+                  <ion-col size="4" class="select">
+                    <ion-label>Opções</ion-label>
+                    <div class="options past">
+                      <span>Remarcar</span>
+                      <span>Remover</span>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-list>
+      </div>
+    </div>
+
+    <ion-row>
+      <ion-col size="11" style="margin: 0 auto">
+        <ion-button
+          expand="block"
+          class="btn-theme-big-red"
+          routerLink="/bookappointment"
+          >Marcar nova consulta</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
