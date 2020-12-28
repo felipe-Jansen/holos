@@ -10,6 +10,6 @@ export class ClientDetailResolver implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot) {
     const clientId = route.paramMap.get("id");
 
-    return this.clientService.getOneClient(Number(clientId));
+    return this.clientService.findById(Number(clientId));
   }
 }

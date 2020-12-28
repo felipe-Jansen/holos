@@ -20,8 +20,11 @@ export class ClientDetailComponent implements OnInit {
   section: string = 'info';
 
   ngOnInit() {
-    console.log(this.route.snapshot.data);
-    this.client = this.route.snapshot.data["data"];
+    this.route.data.subscribe(data => {
+      console.log(data)
+      this.client = data.data[0];
+    })
+    
   }
 
   async presentUpdateModal() {

@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "http://3.230.128.205",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwOTE4MjE5N30.qufk1uAkzAnXb0KMlievXEWzM6QgG_QTTE2pA3WDXhfOHrcQxtHEKL-ucl8J0PBxac6nYiGAEXs1OSsR9UauKw"
+    }
+  }
+}

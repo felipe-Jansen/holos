@@ -8,8 +8,24 @@
   --page-tags-gutter: 5px;
 }
 
+ion-item.input-item{
+  ion-label{
+    color: var(--holos-blue);
+  }
+}
+
+ion-toolbar{
+  --ion-color-base: var(--holos-blue) !important;
+}
+
 .update-user-content {
   --background: var(--page-background);
+
+  ion-button{
+    --ion-color-base: var(--holos-blue) !important;
+  }  
+
+  
 
   .select-user-image-row {
     --ion-grid-column-padding: 0px;
@@ -150,11 +166,14 @@
 
   padding: calc(var(--page-margin) / 2);
 
-  .submit-btn {
+  ion-button.submit-btn {
     margin: 0px;
+    --ion-color-base: var(--holos-blue) !important;
+
   }
 
-  .delete-btn {
+  ion-button.delete-btn {
     margin: 0px;
+    --ion-color-base: var(--holos-blue) !important;
   }
 }

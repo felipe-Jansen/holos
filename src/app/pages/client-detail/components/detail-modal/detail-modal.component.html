@@ -16,7 +16,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="update-user-content" >
+  <ion-content class="update-user-content">
     <ion-row class="select-user-image-row">
       <ion-col class="user-image-col" size="5">
         <app-aspect-ratio [ratio]="{ w: 1, h: 1 }">
@@ -41,48 +41,102 @@
     <section class="user-details-fields fields-section">
       <ion-list class="inputs-list" lines="full">
         <ion-item class="input-item">
+          <ion-label color="secondary" position="floating">Nome</ion-label>
+          <ion-input type="text" formControlName="nome"></ion-input>
+        </ion-item>
+        <ion-item class="input-item">
           <ion-label color="secondary" position="floating">CPF</ion-label>
-          <ion-input type="text" formControlName="cpf" required></ion-input>
+          <ion-input type="text" formControlName="cpf"></ion-input>
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">RG</ion-label>
-          <ion-input type="text" formControlName="rg" required></ion-input>
-        </ion-item>
-        <ion-item class="input-item">
-          <ion-label color="secondary" position="floating">Nome</ion-label>
-          <ion-input type="text" formControlName="name" required></ion-input>
+          <ion-input type="text" formControlName="rg"></ion-input>
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">Whatsapp</ion-label>
-          <ion-input type="tel" formControlName="phone" required></ion-input>
+          <ion-input type="text" formControlName="whatsapp"></ion-input>
         </ion-item>
         <ion-item class="input-item">
-          <ion-label color="secondary" position="floating">Email</ion-label>
-          <ion-input type="email" formControlName="email" required></ion-input>
+          <ion-label color="secondary" position="floating">E-mail</ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item class="input-item">
+          <ion-label color="secondary" position="floating">Cep</ion-label>
+          <ion-input type="tel" formControlName="cep"></ion-input>
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">UF</ion-label>
-          <ion-input type="text" formControlName="uf" required></ion-input>
+          <ion-input type="text" formControlName="uf"></ion-input>
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">Cidade</ion-label>
-          <ion-input type="text" formControlName="city" required></ion-input>
+          <ion-input type="email" formControlName="cidade"></ion-input>
+        </ion-item>
+        <ion-item class="input-item">
+          <ion-label color="secondary" position="floating">Bairro</ion-label>
+          <ion-input type="text" formControlName="bairro"></ion-input>
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">Endereço</ion-label>
-          <ion-input type="text" formControlName="address" required></ion-input>
+          <ion-input type="text" formControlName="endereco"></ion-input>
+        </ion-item>
+        <ion-item class="input-item">
+          <ion-label color="secondary" position="floating">Número</ion-label>
+          <ion-input type="text" formControlName="numero"></ion-input>
+        </ion-item>
+        <ion-item class="input-item">
+          <ion-label color="secondary" position="floating">Celular</ion-label>
+          <ion-input type="text" formControlName="celular"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label color="secondary" position="floating">Profissão</ion-label>
+          <ion-input type="text" formControlName="profissao"></ion-input>
+        </ion-item>
+        <ion-item class="input-item">
+          <ion-label color="secondary" position="floating">Captação</ion-label>
+          <ion-input type="text" formControlName="captacao"></ion-input>
         </ion-item>
 
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating"
-            >Data de Nascimento:</ion-label
+            >Nascimento</ion-label
           >
-          <ion-datetime
-            display-format="DD/MM/YYYY"
-            picker-format="DD MMMM YYYY"
-            formControlName="birthdate"
-            required
-          ></ion-datetime>
+          <ion-input type="text" formControlName="nascimento"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label color="secondary" position="floating">Indicação</ion-label>
+          <ion-input type="text" formControlName="indicacao"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label color="secondary" position="floating"
+            >Nome da Mãe</ion-label
+          >
+          <ion-input type="text" formControlName="nomeMae"></ion-input>
+        </ion-item>
+        <ion-item class="input-item">
+          <ion-label color="secondary" position="floating"
+            >Nome do Pai</ion-label
+          >
+          <ion-input type="text" formControlName="nomePai"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label color="secondary" position="floating"
+            >Observação</ion-label
+          >
+          <ion-input type="text" formControlName="observacao"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label color="secondary" position="floating">Sexo</ion-label>
+          <ion-input type="text" formControlName="sexo"></ion-input>
+        </ion-item>
+        <ion-item class="input-item">
+          <ion-label color="secondary" position="floating">Telefone</ion-label>
+          <ion-input type="text" formControlName="telefone"></ion-input>
         </ion-item>
       </ion-list>
     </section>

@@ -27,7 +27,7 @@ export class ClientItemModel extends ShellModel {
   cidade: string;
   cpf: string;
   cro: string;
-  nascimento: string;
+  dataDeNascimento: string;
   email: string;
   endereco: string;
   foto: string;

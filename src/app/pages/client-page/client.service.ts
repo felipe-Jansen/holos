@@ -17,7 +17,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: "root",
 })
 export class ClientService {
-  clients: Array<ClientItemModel>;
   constructor(private http: HttpClient) {}
   private jwtToken =
     "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYxMTQxNzE4NH0.iWu1IdxM2MYJySyTC0iUgH1a9WhM55DzlhsN035zobh2YE0616cB4FRKTc9Q_74DGP0v322_3rwXPyPi2EkCAA";
@@ -27,32 +26,37 @@ export class ClientService {
     Authorization: `Bearer ${this.jwtToken}`,
   });
 
-  setClients(clients: Array<ClientItemModel>): void {
-    this.clients = clients;
-  }
-
   getAllClients(): Observable<Array<ClientItemModel>> {
-    return this.http.get<Array<ClientItemModel>>(
-      "https://my.api.mockaroo.com/pessoa.json?key=3dc56030"
-    );
+    return this.http.get<Array<ClientItemModel>>("api/pessoas");
   }
 
-  getOneClient(id: number): ClientItemModel {
-    return this.clients.find((client) => client.id === id);
+  getPagedClients(page: number): Observable<Array<ClientItemModel>> {
+    return this.http.get<Array<ClientItemModel>>(`api/pessoas?page=${page}`);
+  }
+
+  findById(id: number): Observable<ClientItemModel> {
+    return this.http.get<ClientItemModel>(`api/pessoas?id.equals=${id}`);
+  }
+
+  findByName(name: string): any {
+    return this.http.get<any>(`api/pessoas?nome.contains=${name}`);
   }
 
   updateUser(client: ClientItemModel): void {
-    const index = this.clients.findIndex((clientT) => clientT.id === client.id);
-    if (index !== -1) {
-      this.clients[index] = client;
-    }
+    const { id } = client;
+    console.log(id);
+    this.http.put<any>(`api/pessoas?id.equals=${id}`, client).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   deleteUser(id: number): void {
-    const index = this.clients.findIndex((clientT) => clientT.id === id);
-    if (index !== -1) {
-      this.clients.splice(index);
-    }
+    this.http.delete<any>(`api/pessoas?id.equals=${id}`);
   }
 
   private calcUserAge(dateOfBirth: number): number {

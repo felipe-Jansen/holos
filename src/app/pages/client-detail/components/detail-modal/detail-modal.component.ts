@@ -26,31 +26,108 @@ export class DetailModalComponent implements OnInit {
 
   ngOnInit() {
     this.selectedAvatar = this.user.foto;
+    const {
+      bairro,
+      captacao,
+      celular,
+      cep,
+      cidade,
+      cpf,
+      cro,
+      dataDeNascimento,
+      email,
+      endereco,
+      indicacao,
+      nome,
+      nomeMae,
+      nomePai,
+      numero,
+      observacao,
+      perfil,
+      profissao,
+      rg,
+      sexo,
+      telefone,
+      uf,
+      whatsapp,
+    } = this.user;
     console.log(this.user);
     this.updateUserForm = new FormGroup({
-      cpf: new FormControl(this.user.cpf),
-      rg: new FormControl(this.user.rg),
-      name: new FormControl(this.user.nome),
-      phone: new FormControl(this.user.whatsapp),
-      email: new FormControl(this.user.email),
-      uf: new FormControl(this.user.uf),
-      city: new FormControl(this.user.cidade),
-      address: new FormControl(this.user.endereco),
-      birthdate: new FormControl(this.user.nascimento),
+      bairro: new FormControl(bairro),
+      captacao: new FormControl(captacao),
+      celular: new FormControl(celular),
+      cep: new FormControl(cep),
+      cidade: new FormControl(cidade),
+      cpf: new FormControl(cpf),
+      cro: new FormControl(cro),
+      nascimento: new FormControl(dataDeNascimento),
+      email: new FormControl(email),
+      endereco: new FormControl(endereco),
+      indicacao: new FormControl(indicacao),
+      nome: new FormControl(nome),
+      nomeMae: new FormControl(nomeMae),
+      nomePai: new FormControl(nomePai),
+      numero: new FormControl(numero),
+      observacao: new FormControl(observacao),
+      perfil: new FormControl(perfil),
+      profissao: new FormControl(profissao),
+      rg: new FormControl(rg),
+      sexo: new FormControl(sexo),
+      telefone: new FormControl(telefone),
+      uf: new FormControl(uf),
+      whatsapp: new FormControl(whatsapp),
     });
   }
 
   updateUser() {
+    const {
+      bairro,
+      captacao,
+      celular,
+      cep,
+      cidade,
+      cpf,
+      cro,
+      dataDeNascimento,
+      email,
+      endereco,
+      indicacao,
+      nome,
+      nomeMae,
+      nomePai,
+      numero,
+      observacao,
+      perfil,
+      profissao,
+      rg,
+      sexo,
+      telefone,
+      uf,
+      whatsapp,
+    } = this.updateUserForm.value
     this.user.foto = this.selectedAvatar;
-    this.user.cpf = this.updateUserForm.value.cpf;
-    this.user.rg = this.updateUserForm.value.rg;
-    this.user.nome = this.updateUserForm.value.name;
-    this.user.uf = this.updateUserForm.value.uf;
-    this.user.cidade = this.updateUserForm.value.city;
-    this.user.endereco = this.updateUserForm.value.address;
-    this.user.whatsapp = this.updateUserForm.value.phone;
-    this.user.email = this.updateUserForm.value.email;
-    this.user.nascimento = this.updateUserForm.value.birthdate;
+    this.user.bairro = bairro
+    this.user.captacao = captacao
+    this.user.celular = celular
+    this.user.cep = cep;
+    this.user.cidade = cidade
+    this.user.cpf = cpf;
+    this.user.cro = cro;
+    this.user.dataDeNascimento = dataDeNascimento
+    this.user.email = email
+    this.user.endereco = endereco
+    this.user.indicacao = indicacao
+    this.user.nome = nome
+    this.user.nomeMae = nomeMae
+    this.user.nomePai = nomePai
+    this.user.numero = numero
+    this.user.observacao = observacao
+    this.user.profissao = profissao
+    this.user.rg = rg;
+    this.user.sexo = sexo;
+    this.user.telefone = telefone;
+    this.user.uf = uf;
+    this.user.whatsapp = whatsapp
 
     this.clientService.updateUser(this.user);
     this.modalController.dismiss();
@@ -72,7 +149,7 @@ export class DetailModalComponent implements OnInit {
             this.clientService.deleteUser(this.user.id);
 
             this.dismissModal();
-            this.router.navigate(["client"])
+            this.router.navigate(["client"]);
           },
         },
       ],
