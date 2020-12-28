@@ -6,7 +6,8 @@
       <ion-col size="6" *ngFor="let anexo of anexos">
         <ion-card>
           <ion-card-content>
-              <img [src]="anexo.arquivo" alt="anexo" (click)="showImage('www/assets/Holos/img/marca-holos-roxo.jpg')">
+              <app-image-shell [src]="anexo.url" alt="anexo" (click)="showPDF(anexo.url)"> 
+                </app-image-shell> 
           </ion-card-content>
       </ion-card>
       </ion-col>

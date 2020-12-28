@@ -102,8 +102,8 @@
       </ion-col>
     </ion-row>
 
-    <app-agendamento *ngSwitchCase="'agenda'" [agendamento]="client?.agenda">
+    <app-agendamento *ngSwitchCase="'agenda'" [idPatient]="client?.id">
     </app-agendamento>
-    <app-anexos *ngSwitchCase="'anexo'" [anexos]="client?.anexos"> </app-anexos>
+    <app-anexos *ngSwitchCase="'anexo'" [idPatient]="client?.id"> </app-anexos>
   </section>
 </ion-content>

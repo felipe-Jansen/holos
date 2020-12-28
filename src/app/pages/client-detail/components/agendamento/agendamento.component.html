@@ -3,28 +3,28 @@
     <div class="info situacao">
       <h4>Situação:</h4>
       <p>
-        {{ item.situacao }}
+        {{ item.situacaoDeAgendamento }}
       </p>
     </div>
     <div class="info tipo">
       <h4>Tipo:</h4>
-      <p>{{ item.tipo }}</p>
+      <p>{{ item.tipoDeAgendamento }}</p>
     </div>
     <div class="info inicio">
       <h4>Ínicio:</h4>
-      <p>{{ item.inicio }}</p>
+      <p>{{ item.horaInicial | date: 'shortDate' }}</p>
     </div>
     <div class="info termino">
       <h4>Término:</h4>
-      <p>{{ item.termino }}</p>
+      <p>{{ item.horaFinal | date: 'shortDate' }}</p>
     </div>
     <div class="info profissional">
       <h4>Profissional:</h4>
-      <p>{{ item.profissional }}</p>
+      <p>{{ item.profissionalNome }}</p>
     </div>
     <div class="info obs">
       <h4>Observação:</h4>
-      <p>{{ item.obs }}</p>
+      <p>{{ item.observacao }}</p>
     </div>
   </div>
 </section>

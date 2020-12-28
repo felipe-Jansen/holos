@@ -55,6 +55,14 @@ export class ClientService {
     );
   }
 
+  getAnexos(id: number):any {
+    return this.http.get(`api/anexo-do-pacientes?pacienteId.equals=${id}`)
+  }
+
+  getAgenda(id: number): any {
+    return this.http.get(`api/agenda?pacienteId.equals=${id}`)
+  }
+
   deleteUser(id: number): void {
     this.http.delete<any>(`api/pessoas?id.equals=${id}`);
   }
