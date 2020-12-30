@@ -1,8 +1,11 @@
 section{
+  margin: 0 auto;
   margin-top: 30px;
+  width: 95%;
+  
 }
 ion-grid {
-    width: 95%;
+    width: 100%;
     padding: 0 !important;
   }
   ion-card {
@@ -24,3 +27,16 @@ ion-grid {
       padding-top: 1rem;
     }
   }
+
+  .carregando, .sem-anexos{
+    width: 100%;
+    text-align: center;
+    color: #c3c3c3;
+  } 
+
+  .spacer{
+    content: '';
+    height: 130px;
+    width: 100%;
+    display: block;
+}

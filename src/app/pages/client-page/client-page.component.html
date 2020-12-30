@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>Pacientes</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="openFirebaseCreateModal()">
+      <ion-button>
         <ion-icon slot="icon-only" name="add"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -26,7 +26,6 @@
         <ion-button
           fill="clear"
           class="filters-btn"
-          (click)="showAgeFilter = !showAgeFilter"
         >
           <ion-icon slot="icon-only" name="options"></ion-icon>
         </ion-button>
@@ -49,7 +48,9 @@
               class="user-image"
               animation="spinner"
               [src]="
-                user.foto ? user.foto : '../../../assets/Holos/semfoto.jpg'
+                user.foto
+                  ? 'data:image/jpeg;base64,' + user.foto
+                  : '../../../assets/Holos/semfoto.jpg'
               "
               [alt]="'user image'"
             ></app-image-shell>

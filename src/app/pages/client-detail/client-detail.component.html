@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="homepage"></ion-back-button>
+      <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
     <ion-title>Detalhes Paciente</ion-title>
     <ion-buttons slot="end">
@@ -31,7 +31,9 @@
             class="user-image"
             animation="spinner"
             [src]="
-              client?.foto ? client.foto : '../../../assets/Holos/semfoto.jpg'
+              client?.foto
+                ? 'data:image/jpeg;base64,' + client.foto
+                : '../../../assets/Holos/semfoto.jpg'
             "
             [alt]="'client image'"
           >
@@ -96,14 +98,34 @@
         <ng-container *ngFor="let prop of client | keyvalue">
           <ion-row *ngIf="prop.value">
             <h4>{{ prop.key | uppercase }}:</h4>
-            <p>{{ prop.value }}</p>
+            <p *ngIf="prop.key === 'dataDeNascimento'">
+              {{ prop.value | date: "dd/MM/yyyy" }}
+            </p>
+            <p *ngIf="prop.key !== 'dataDeNascimento'">{{ prop.value }}</p>
           </ion-row>
         </ng-container>
       </ion-col>
     </ion-row>
 
-    <app-agendamento *ngSwitchCase="'agenda'" [idPatient]="client?.id">
+    <app-agendamento
+      *ngSwitchCase="'agenda'"
+      [idPatient]="client?.id"
+      (agendamentosEmit)="getAgendaCache($event)"
+      [agendamentosCache]="agendaCache ? agendaCache : ''"
+    >
     </app-agendamento>
-    <app-anexos *ngSwitchCase="'anexo'" [idPatient]="client?.id"> </app-anexos>
+    <app-anexos
+      *ngSwitchCase="'anexo'"
+      [idPatient]="client?.id"
+      (anexosEmit)="getAnexosCache($event)"
+      [anexosCache]="anexosCache ? anexosCache : ''"
+    >
+    </app-anexos>
+    
   </section>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="section==='anexo'" (click)="setAnexo()">
+    <ion-fab-button>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

@@ -13,7 +13,9 @@ import { ResponseNewsAPI } from "../interfaces/responseApi";
 const APIURL = "http://newsapi.org/v2/top-headlines";
 const APIKEY = "1bee8432ea4d4ca386313d3d9d771e08";
 
-@Injectable()
+@Injectable( {
+  providedIn: 'root'
+})
 export class NewsProvider {
   actualNews: News;
 

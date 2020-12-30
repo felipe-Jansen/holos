@@ -18,13 +18,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class ClientService {
   constructor(private http: HttpClient) {}
-  private jwtToken =
-    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYxMTQxNzE4NH0.iWu1IdxM2MYJySyTC0iUgH1a9WhM55DzlhsN035zobh2YE0616cB4FRKTc9Q_74DGP0v322_3rwXPyPi2EkCAA";
-
-  private httpHeader = new HttpHeaders({
-    "Content-type": "application/json",
-    Authorization: `Bearer ${this.jwtToken}`,
-  });
 
   getAllClients(): Observable<Array<ClientItemModel>> {
     return this.http.get<Array<ClientItemModel>>("api/pessoas");
@@ -42,8 +35,9 @@ export class ClientService {
     return this.http.get<any>(`api/pessoas?nome.contains=${name}`);
   }
 
-  updateUser(client: ClientItemModel): void {
+  updateUser(client: any): void {
     const { id } = client;
+
     console.log(id);
     this.http.put<any>(`api/pessoas?id.equals=${id}`, client).subscribe(
       (data) => {
@@ -55,12 +49,16 @@ export class ClientService {
     );
   }
 
-  getAnexos(id: number):any {
-    return this.http.get(`api/anexo-do-pacientes?pacienteId.equals=${id}`)
+  getAnexos(id: number): any {
+    return this.http.get(`api/anexo-do-pacientes?pacienteId.equals=${id}`);
   }
 
   getAgenda(id: number): any {
-    return this.http.get(`api/agenda?pacienteId.equals=${id}`)
+    return this.http.get(`api/agenda?pacienteId.equals=${id}`);
+  }
+
+  postAnexo(params: any) {
+    return this.http.post("api/anexo-do-pacientes", params)
   }
 
   deleteUser(id: number): void {

@@ -1,0 +1,39 @@
+<section class="popover-agendamento">
+  <div class="profissional-container">
+    <div>
+      <app-image-shell
+        [alt]="'foto profissional'"
+        class="foto-profissional"
+        [src]="
+          fotoProfissional ? 'data:image/jpeg;base64,' + fotoProfissional : ''
+        "
+        animation="spinner"
+      ></app-image-shell>
+      <h4>{{ agendamento.profissionalNome }}</h4>
+    </div>
+  </div>
+  <div class="card">
+    <div class="info situacao">
+      <h4>Situação:</h4>
+      <p>
+        {{ agendamento.situacaoDeAgendamento }}
+      </p>
+    </div>
+    <div class="info tipo">
+      <h4>Tipo:</h4>
+      <p>{{ agendamento.tipoDeAgendamento }}</p>
+    </div>
+    <div class="info inicio">
+      <h4>Ínicio:</h4>
+      <p>{{ agendamento.horaInicial | date: "hh:mm" }}</p>
+    </div>
+    <div class="info termino">
+      <h4>Término:</h4>
+      <p>{{ agendamento.horaFinal | date: "hh:mm" }}</p>
+    </div>
+    <div class="info obs">
+      <h4>Observação:</h4>
+      <p>{{ agendamento.observacao }}</p>
+    </div>
+  </div>
+</section>

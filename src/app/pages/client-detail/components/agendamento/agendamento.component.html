@@ -1,30 +1,35 @@
 <section>
-  <div class="card" *ngFor="let item of agendamento">
-    <div class="info situacao">
-      <h4>Situação:</h4>
-      <p>
-        {{ item.situacaoDeAgendamento }}
-      </p>
+  <div class="legenda" *ngIf="agendamentos?.length > 0">
+    <p class="text-blue"> AGUARDANDO </p>
+    <p class="text-green"> FINALIZADO</p>
+    <p class="text-danger"> CANCELADO </p>
+    <p class="text-gold"> LEMBRETE </p>
+  </div>
+  <div class="tag" *ngFor="let item of agendamentos"
+    [class.bg-blue]="item.situacaoDeAgendamento === 'AGUARDANDO'"
+    [class.bg-green]="item.situacaoDeAgendamento === 'FINALIZADO'"
+    [class.bg-danger]="item.situacaoDeAgendamento === 'CANCELADO'"
+    [class.bg-gold]="item.situacaoDeAgendamento === 'LEMBRETE '"
+    (click)="showAgendamento(item.id)"
+  >
+    <div class="tag-info" >
+      <h4>Tipo</h4>
+      <p>{{ item.tipoDeAgendamento}}</p>
     </div>
-    <div class="info tipo">
-      <h4>Tipo:</h4>
-      <p>{{ item.tipoDeAgendamento }}</p>
+    <div class="tag-info">
+      <h4>Dia</h4>
+      <p>{{ item.horaInicial | date: 'shortDate'}}</p>
     </div>
-    <div class="info inicio">
-      <h4>Ínicio:</h4>
-      <p>{{ item.horaInicial | date: 'shortDate' }}</p>
+    <div class="tag-info">
+      <h4>Ínicio</h4>
+      <p>{{ item.horaFinal | date: 'h:mm'}}</p>
     </div>
-    <div class="info termino">
-      <h4>Término:</h4>
-      <p>{{ item.horaFinal | date: 'shortDate' }}</p>
-    </div>
-    <div class="info profissional">
-      <h4>Profissional:</h4>
-      <p>{{ item.profissionalNome }}</p>
-    </div>
-    <div class="info obs">
-      <h4>Observação:</h4>
-      <p>{{ item.observacao }}</p>
-    </div>
+  </div>
+  <div class="carregando" *ngIf="agendamentos === ''">
+    <h4>Carregando Agenda...</h4>
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <div class="sem-agenda" *ngIf="agendamentos.length === 0 && agendamentos!== ''">
+    <h4>O paciente não possui agenda</h4>
   </div>
 </section>

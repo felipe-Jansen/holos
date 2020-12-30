@@ -134,3 +134,70 @@ ion-item{
     --padding-start: 0px;
 }
 
+
+.popover-content{
+    width: 90% !important;
+    left: 5% !important;
+}
+.popover-agendamento {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 10px;
+    .profissional-container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        .foto-profissional{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            left: calc(100%/3) !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        div h4{
+            color: var(--holos-blue);
+            font-weight: bolder;
+            font-size: 16px;
+        }
+    } 
+    .card {
+      display: grid;
+      padding: 10px;
+      grid-template-areas: "situacao tipo"
+      "inicio termino"
+      "obs obs";
+      .situacao{
+          grid-area: situacao;
+      }
+      .tipo {
+          grid-area: tipo;
+      }
+      .inicio{
+          grid-area: inicio;
+      }
+      .termino{
+          grid-area: termino;
+      }
+      .obs{
+          grid-area: obs;
+      }
+      grid-gap: 10px;
+      --inner-padding-start: 0px;
+      h4 {
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 0px;
+      }
+    
+      p {
+        font-size: 12px;
+        margin: 0;
+      }
+    }
+  }

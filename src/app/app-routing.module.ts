@@ -1,3 +1,4 @@
+import { AuthGuard } from './providers/guard/auth.guard';
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { SigninPageComponent } from "./pages/signin-page/signin-page.component";
@@ -26,10 +27,11 @@ const routes: Routes = [
   {
     path: "home",
     component: HomePageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "about",
-    component: AboutPageComponent,
+    loadChildren: () => import("./pages/about-page/about-page.module").then(m => m.AboutPageModule),
   },
   {
     path: "appointment",
@@ -88,7 +90,7 @@ const routes: Routes = [
   },
   {
     path: "",
-    redirectTo: "sign",
+    redirectTo: "home",
     pathMatch: "full",
   },
 ];

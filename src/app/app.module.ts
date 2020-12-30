@@ -1,6 +1,8 @@
-import { NgModule } from "@angular/core";
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { LOCALE_ID, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouteReuseStrategy } from "@angular/router";
+
 
 import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
@@ -8,16 +10,24 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { PhotoViewer } from "@ionic-native/photo-viewer/ngx";
 import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
 import { File } from "@ionic-native/file/ngx";
-import { NewsProvider } from "./providers/news.service";
 import { BookApointmentService } from "./shared/services/book-apointment.service";
+import localePtBr from "@angular/common/locales/pt";
+import { registerLocaleData } from "@angular/common";
+registerLocaleData(localePtBr);
+import { Camera } from "@ionic-native/Camera/ngx";
+import { FilePath } from "@ionic-native/file-path/ngx";
+import { FileOpener } from '@ionic-native/file-opener/ngx'
+
+
 
 import { AppRoutingModule } from "./app-routing.module";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { PipesModule } from "./pipes/pipes.module";
 import { ComponentsModule } from "./shared/components/components.module";
 import { TransferState } from "@angular/platform-browser";
 import { ClientDetailResolver } from "./pages/client-detail/client-detail.resolver";
+import { AuthInterceptor } from "./providers/auth/auth-interceptor";
 
 import { AppComponent } from "./app.component";
 import { SigninPageComponent } from "./pages/signin-page/signin-page.component";
@@ -44,15 +54,21 @@ import { ClientPageComponent } from "./pages/client-page/client-page.component";
 import { ClientDetailComponent } from "./pages/client-detail/client-detail.component";
 import { DetailModalComponent } from "./pages/client-detail/components/detail-modal/detail-modal.component";
 import { ClientService } from "./pages/client-page/client.service";
-import { AgendamentoComponent} from './pages/client-detail/components/agendamento/agendamento.component'
-import {AnexosComponent} from './pages/client-detail/components/anexos/anexos.component'
+import { AgendamentoComponent } from "./pages/client-detail/components/agendamento/agendamento.component";
+import { AnexosComponent } from "./pages/client-detail/components/anexos/anexos.component";
+import { Principal } from "./providers/auth/principal.service";
+import { AccountService } from "./providers/auth/account.service";
+import { AuthServerProvider } from "./providers/auth/auth-jwt.service";
+import { LoginService } from "./providers/login/login.service";
+import { LocalStorageService, SessionStorageService } from "ngx-webstorage";
+import { Api } from "./providers/api/api";
+import { AgendamentoCardComponent } from "./pages/client-detail/components/agendamento-card/agendamento-card.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninPageComponent,
     HomePageComponent,
-    AboutPageComponent,
     ServicesPageComponent,
     TestimonialsPageComponent,
     GalleryPageComponent,
@@ -74,7 +90,8 @@ import {AnexosComponent} from './pages/client-detail/components/anexos/anexos.co
     ClientDetailComponent,
     DetailModalComponent,
     AgendamentoComponent,
-    AnexosComponent
+    AnexosComponent,
+    AgendamentoCardComponent,
   ],
   entryComponents: [],
   imports: [
@@ -94,13 +111,25 @@ import {AnexosComponent} from './pages/client-detail/components/anexos/anexos.co
     SplashScreen,
     PhotoViewer,
     InAppBrowser,
-    NewsProvider,
     BookApointmentService,
     File,
+    FilePath,
+    Camera,
+    FileTransfer,
+    FileOpener,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     TransferState,
     ClientService,
     ClientDetailResolver,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: "pt-BR" },
+    Principal,
+    AccountService,
+    AuthServerProvider,
+    LoginService,
+    LocalStorageService,
+    SessionStorageService,
+    Api,
   ],
   bootstrap: [AppComponent],
 })

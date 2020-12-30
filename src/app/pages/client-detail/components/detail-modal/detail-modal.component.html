@@ -21,17 +21,21 @@
       <ion-col class="user-image-col" size="5">
         <app-aspect-ratio [ratio]="{ w: 1, h: 1 }">
           <app-image-shell
-            [display]="'cover'"
+            [display]="'contain'"
             class="user-image"
             animation="spinner"
-            [src]="selectedAvatar"
+            [src]="
+              selectedAvatar
+                ? 'data:image/jpeg;base64,' + selectedAvatar
+                : '../../../../../assets/Holos/semfoto.jpg'
+            "
             [alt]="'user image'"
           ></app-image-shell>
         </app-aspect-ratio>
         <ion-button
           class="change-image-btn"
           color="secondary"
-          (click)="changeUserImage()"
+          (click)="changePatientImage()"
         >
           <ion-icon class="btn-icon" slot="icon-only" name="camera"></ion-icon>
         </ion-button>
@@ -46,15 +50,27 @@
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">CPF</ion-label>
-          <ion-input type="text" formControlName="cpf"></ion-input>
+          <ion-input
+            type="text"
+            formControlName="cpf"
+         
+          ></ion-input>
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">RG</ion-label>
-          <ion-input type="text" formControlName="rg"></ion-input>
+          <ion-input
+            type="text"
+            formControlName="rg"
+           
+          ></ion-input>
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">Whatsapp</ion-label>
-          <ion-input type="text" formControlName="whatsapp"></ion-input>
+          <ion-input
+            type="text"
+            formControlName="whatsapp"
+            
+          ></ion-input>
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">E-mail</ion-label>
@@ -62,7 +78,11 @@
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">Cep</ion-label>
-          <ion-input type="tel" formControlName="cep"></ion-input>
+          <ion-input
+            type="tel"
+            formControlName="cep"
+         
+          ></ion-input>
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">UF</ion-label>
@@ -70,7 +90,7 @@
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">Cidade</ion-label>
-          <ion-input type="email" formControlName="cidade"></ion-input>
+          <ion-input type="text" formControlName="cidade"></ion-input>
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">Bairro</ion-label>
@@ -86,7 +106,11 @@
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">Celular</ion-label>
-          <ion-input type="text" formControlName="celular"></ion-input>
+          <ion-input
+            type="text"
+            formControlName="celular"
+          
+          ></ion-input>
         </ion-item>
 
         <ion-item class="input-item">
@@ -102,7 +126,14 @@
           <ion-label color="secondary" position="floating"
             >Nascimento</ion-label
           >
-          <ion-input type="text" formControlName="nascimento"></ion-input>
+          <ion-datetime
+            doneText="Pronto"
+            cancelText="Cancelar"
+            displayFormat="DD/MM/YYYY"
+            placeholder="Escolha a data"
+            formControlName="dataDeNascimento"
+            monthShortNames="JAN, FEV, MAR, ABR, MAI, JUN, JUL, AGO, SET, OUT, NOV, DEZ"
+          ></ion-datetime>
         </ion-item>
 
         <ion-item class="input-item">
@@ -127,7 +158,7 @@
           <ion-label color="secondary" position="floating"
             >Observação</ion-label
           >
-          <ion-input type="text" formControlName="observacao"></ion-input>
+          <ion-textarea rows="4" formControlName="observacao"></ion-textarea>
         </ion-item>
 
         <ion-item class="input-item">
@@ -151,7 +182,7 @@
           color="primary"
           fill="outline"
           (click)="deleteUser()"
-          >DELETE</ion-button
+          >EXCLUIR</ion-button
         >
       </ion-col>
       <ion-col>
@@ -162,7 +193,7 @@
           type="submit"
           fill="solid"
           [disabled]="!updateUserForm.valid"
-          >UPDATE</ion-button
+          >ATUALIZAR</ion-button
         >
       </ion-col>
     </ion-row>
