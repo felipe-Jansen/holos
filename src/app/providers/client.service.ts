@@ -1,5 +1,5 @@
 import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
-import { ClientItemModel } from "./client.item.model";
+import { ClientItemModel } from "../pages/client-page/client.item.model";
 import {
   Observable,
   of,
@@ -17,7 +17,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: "root",
 })
 export class ClientService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAllClients(): Observable<Array<ClientItemModel>> {
     return this.http.get<Array<ClientItemModel>>("api/pessoas");

@@ -2,9 +2,8 @@ import { Component, Input, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AlertController, ModalController } from "@ionic/angular";
-import * as dayjs from "dayjs";
 import { ClientItemModel } from "src/app/pages/client-page/client.item.model";
-import { ClientService } from "src/app/pages/client-page/client.service";
+import { ClientService } from "src/app/providers/client.service";
 import { Camera, CameraOptions } from "@ionic-native/Camera/ngx";
 import { File } from "@ionic-native/file/ngx";
 
@@ -19,6 +18,25 @@ export class DetailModalComponent implements OnInit {
   updateUserForm: FormGroup;
   selectedAvatar: string;
   meses = "JAN,FEV,MAR,ABR,MAI,JUN,JUL,AGO,SET,OUT,NOV,DEZ";
+  generos = ["Masculino", "Feminino", "Outros"]
+  captacaoOpcoes = ["FACEBOOK", "INSTAGRAM", "REVISTA", "INDICAÇÃO"]
+
+  validations = {
+    'cpf': [
+      { type: 'minlength', message: 'Cpf deve ter no mínimo 11 caracteres!' },
+    ],
+    'cep': [
+      { type: 'minlength', message: 'Cep deve ter no mínimo 8 caracteres' },
+    ],
+    'email': [
+      { type: 'pattern', message: 'Entre um e-mail válido.' }
+    ],
+    'whatsapp': [
+      { type: 'minlength', message: 'Whatsapp tem no mínimo 11 dígitos!.' }
+    ],
+  };
+
+
 
   constructor(
     private modalController: ModalController,
@@ -80,7 +98,7 @@ export class DetailModalComponent implements OnInit {
       sexo: new FormControl(sexo),
       telefone: new FormControl(telefone),
       uf: new FormControl(uf),
-      whatsapp: new FormControl(whatsapp),
+      whatsapp: new FormControl(whatsapp, Validators.minLength(13)),
     });
   }
 

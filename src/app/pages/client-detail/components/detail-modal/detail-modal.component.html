@@ -53,25 +53,51 @@
           <ion-input
             type="text"
             formControlName="cpf"
-         
+            simpleMask="999.999.999-99"
           ></ion-input>
         </ion-item>
+        <div class="error-container">
+          <ng-container *ngFor="let validation of validations.cpf">
+            <div
+              class="error-message"
+              *ngIf="
+                updateUserForm.get('cpf').hasError(validation.type) &&
+                (updateUserForm.get('cpf').dirty ||
+                  updateUserForm.get('cpf').touched)
+              "
+            >
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>{{ validation.message }}</span>
+            </div>
+          </ng-container>
+        </div>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">RG</ion-label>
-          <ion-input
-            type="text"
-            formControlName="rg"
-           
-          ></ion-input>
+          <ion-input type="text" formControlName="rg"></ion-input>
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">Whatsapp</ion-label>
           <ion-input
             type="text"
             formControlName="whatsapp"
-            
+            simpleMask="(99)99999-9999"
           ></ion-input>
         </ion-item>
+        <div class="error-container">
+          <ng-container *ngFor="let validation of validations.whatsapp">
+            <div
+              class="error-message"
+              *ngIf="
+                updateUserForm.get('whatsapp').hasError(validation.type) &&
+                (updateUserForm.get('whatsapp').dirty ||
+                  updateUserForm.get('whatsapp').touched)
+              "
+            >
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>{{ validation.message }}</span>
+            </div>
+          </ng-container>
+        </div>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">E-mail</ion-label>
           <ion-input type="text" formControlName="email"></ion-input>
@@ -79,11 +105,26 @@
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">Cep</ion-label>
           <ion-input
-            type="tel"
+            type="text"
             formControlName="cep"
-         
+            simpleMask="99999-999"
           ></ion-input>
         </ion-item>
+        <div class="error-container">
+          <ng-container *ngFor="let validation of validations.cep">
+            <div
+              class="error-message"
+              *ngIf="
+                updateUserForm.get('cep').hasError(validation.type) &&
+                (updateUserForm.get('cep').dirty ||
+                  updateUserForm.get('cep').touched)
+              "
+            >
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>{{ validation.message }}</span>
+            </div>
+          </ng-container>
+        </div>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">UF</ion-label>
           <ion-input type="text" formControlName="uf"></ion-input>
@@ -109,7 +150,7 @@
           <ion-input
             type="text"
             formControlName="celular"
-          
+            simpleMask="(99)99999-9999"
           ></ion-input>
         </ion-item>
 
@@ -117,9 +158,15 @@
           <ion-label color="secondary" position="floating">Profissão</ion-label>
           <ion-input type="text" formControlName="profissao"></ion-input>
         </ion-item>
-        <ion-item class="input-item">
-          <ion-label color="secondary" position="floating">Captação</ion-label>
-          <ion-input type="text" formControlName="captacao"></ion-input>
+        <ion-item class="input-item item-label-floating">
+          <ion-label position="floating">Captação</ion-label>
+          <ion-select formControlName="captacao" cancelText="Cancelar" okText="OK">
+            <ion-select-option
+              *ngFor="let captacao of captacaoOpcoes"
+              [value]="captacao"
+              >{{ captacao }}</ion-select-option
+            >
+          </ion-select>
         </ion-item>
 
         <ion-item class="input-item">
@@ -129,10 +176,12 @@
           <ion-datetime
             doneText="Pronto"
             cancelText="Cancelar"
-            displayFormat="DD/MM/YYYY"
+            display-format="DD/MMM/YYYY"
+            picker-format="DD MMM YYYY"
             placeholder="Escolha a data"
             formControlName="dataDeNascimento"
-            monthShortNames="JAN, FEV, MAR, ABR, MAI, JUN, JUL, AGO, SET, OUT, NOV, DEZ"
+            monthShortNames="jan,fev,mar,abr,mai,jun,jul,ago,set,out,nov,dez"
+            monthNames="janeiro,fevereiro,março,abril,maio,junho,julho,agosto,setembro,outubro,novembro,dezembro"
           ></ion-datetime>
         </ion-item>
 
@@ -161,13 +210,23 @@
           <ion-textarea rows="4" formControlName="observacao"></ion-textarea>
         </ion-item>
 
-        <ion-item class="input-item">
-          <ion-label color="secondary" position="floating">Sexo</ion-label>
-          <ion-input type="text" formControlName="sexo"></ion-input>
+        <ion-item class="input-item item-label-floating">
+          <ion-label position="floating">Gênero</ion-label>
+          <ion-select formControlName="sexo" cancelText="Cancelar" okText="OK">
+            <ion-select-option
+              *ngFor="let gender of generos"
+              [value]="gender"
+              >{{ gender }}</ion-select-option
+            >
+          </ion-select>
         </ion-item>
         <ion-item class="input-item">
           <ion-label color="secondary" position="floating">Telefone</ion-label>
-          <ion-input type="text" formControlName="telefone"></ion-input>
+          <ion-input
+            type="text"
+            formControlName="telefone"
+            simpleMask="(99)99999-9999"
+          ></ion-input>
         </ion-item>
       </ion-list>
     </section>

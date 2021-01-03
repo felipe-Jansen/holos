@@ -1,4 +1,4 @@
-import { ClientService } from "src/app/pages/client-page/client.service";
+import { ClientService } from "src/app/providers/client.service";
 import { Component, Input, OnInit } from "@angular/core";
 
 @Component({

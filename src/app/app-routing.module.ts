@@ -1,92 +1,96 @@
 import { AuthGuard } from './providers/guard/auth.guard';
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
-import { SigninPageComponent } from "./pages/signin-page/signin-page.component";
-import { HomePageComponent } from "./pages/home-page/home-page.component";
-import { AboutPageComponent } from "./pages/about-page/about-page.component";
-import { ServicesPageComponent } from "./pages/services-page/services-page.component";
-import { TestimonialsPageComponent } from "./pages/testimonials-page/testimonials-page.component";
-import { GalleryPageComponent } from "./pages/gallery-page/gallery-page.component";
-import { AvailabilityPageComponent } from "./pages/availability-page/availability-page.component";
-import { BookApointmentPageComponent } from "./pages/book-apointment-page/book-apointment-page.component";
-import { ConfirmApointmentPageComponent } from "./pages/confirm-apointment-page/confirm-apointment-page.component";
-import { ReachPageComponent } from "./pages/reach-page/reach-page.component";
-import { ContactPageComponent } from "./pages/contact-page/contact-page.component";
-import { BlogPageComponent } from "./pages/blog-page/blog-page.component";
-import { BlogdocPageComponent } from "./pages/blogdoc-page/blogdoc-page.component";
-import { AppointmentPageComponent } from "./pages/appointment-page/appointment-page.component";
-import { ClientPageComponent } from "./pages/client-page/client-page.component";
-import { ClientDetailComponent } from "./pages/client-detail/client-detail.component";
-import { ClientDetailResolver } from "./pages/client-detail/client-detail.resolver";
 
 const routes: Routes = [
   {
     path: "sign",
-    component: SigninPageComponent,
+    loadChildren: () => import('./pages/signin-page/signin-page.module')
+      .then(m => m.SigninPageModule)
   },
   {
     path: "home",
-    component: HomePageComponent,
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./pages/home-page/home-page.module')
+      .then(m => m.HomePageModule),
   },
   {
     path: "about",
-    loadChildren: () => import("./pages/about-page/about-page.module").then(m => m.AboutPageModule),
+    loadChildren: () => import("./pages/about-page/about-page.module")
+      .then(m => m.AboutPageModule),
   },
   {
     path: "appointment",
-    component: AppointmentPageComponent,
+    loadChildren: () => import("./pages/appointment-page/appointment-page.module")
+      .then(m => m.AppointmentPageModule)
   },
   {
     path: "services",
-    component: ServicesPageComponent,
+    loadChildren: () => import("./pages/services-page/services-page.module")
+      .then(m => m.ServicesPageModule)
   },
   {
     path: "testimonials",
-    component: TestimonialsPageComponent,
+    loadChildren: () => import("./pages/testimonials-page/testimonials-page.module")
+      .then(m => m.TestimonialsPageModule)
   },
   {
     path: "gallery",
-    component: GalleryPageComponent,
+    loadChildren: () => import("./pages/gallery-page/gallery-page.module")
+      .then(m => m.GalleryPageModule)
   },
   {
     path: "availability",
-    component: AvailabilityPageComponent,
+    loadChildren: () => import("./pages/availability-page/availability-page.module")
+      .then(m => m.AvailabilityPageModule)
   },
   {
     path: "bookappointment",
-    component: BookApointmentPageComponent,
+    loadChildren: () => import("./pages/book-apointment-page/book-apointment-page.module")
+      .then(m => m.BookApointmentPageModule)
   },
   {
     path: "confirmappointment",
-    component: ConfirmApointmentPageComponent,
+    loadChildren: () => import("./pages/confirm-apointment-page/confirm-apointment-page.module")
+      .then(m => m.ConfirmApointmentPageModule)
+
   },
   {
     path: "reachus",
-    component: ReachPageComponent,
+    loadChildren: () => import("./pages/reach-page/reach-page.module")
+      .then(m => m.ReachPageModule)
   },
   {
     path: "blog",
-    component: BlogdocPageComponent,
+    loadChildren: () => import("./pages/blogdoc-page/blogdoc-page.module")
+      .then(m => m.BlogdocPageModule)
+
   },
   {
     path: "blogdetail",
-    component: BlogPageComponent,
+    loadChildren: () => import("./pages/blog-page/blog-page.module")
+      .then(m => m.BlogPageModule)
   },
   {
     path: "contact",
-    component: ContactPageComponent,
+    loadChildren: () => import("./pages/contact-page/contact-page.module")
+      .then(m => m.ContactPageModule)
   },
   {
     path: "client",
-    component: ClientPageComponent,
+    loadChildren: () => import("./pages/client-page/client-page.module")
+      .then(m => m.ClientPageModule)
   },
   {
     path: "client-detail/:id",
-    component: ClientDetailComponent,
-    resolve: {
-      data: ClientDetailResolver,
-    },
+    loadChildren: () => import("./pages/client-detail/client-detail.module")
+      .then(m => m.ClientDetailModule)
+
+  },
+  {
+    path: "notifications",
+    loadChildren: () => import("./pages/notifications/notifications.module")
+      .then(m => m.NotificationsModule)
+
   },
   {
     path: "",
@@ -101,4 +105,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

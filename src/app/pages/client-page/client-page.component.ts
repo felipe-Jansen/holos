@@ -1,12 +1,5 @@
 import { Component, OnInit, OnDestroy, HostBinding } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
-import { ModalController, IonRouterOutlet } from "@ionic/angular";
-import { ActivatedRoute } from "@angular/router";
-
-import { Observable, ReplaySubject, Subscription, merge } from "rxjs";
-import { switchMap, map } from "rxjs/operators";
-
-import { ClientService } from "./client.service";
+import { ClientService } from "../../providers/client.service";
 import { ClientItemModel } from "./client.item.model";
 
 @Component({
@@ -23,7 +16,9 @@ export class ClientPageComponent implements OnInit {
 
   constructor(public clientService: ClientService) {}
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    console.log("lista cliente destruida")
+  }
 
   ngOnInit() {
     this.searchQuery = "";

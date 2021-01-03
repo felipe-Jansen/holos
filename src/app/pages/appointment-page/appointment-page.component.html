@@ -3,11 +3,11 @@
 <ion-content class="bg-theme">
   <div class="apont-row bg-white">
     <ion-grid>
-      <ion-segment [(ngModel)]="appointment">
-        <ion-segment-button value="coming">
+      <ion-segment [(ngModel)]="appointment" name="appointment">
+        <ion-segment-button value="coming" name="coming">
           <ion-label> Próximas</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="past">
+        <ion-segment-button value="past" name="past">
           <ion-label>Anteriores</ion-label>
         </ion-segment-button>
       </ion-segment>

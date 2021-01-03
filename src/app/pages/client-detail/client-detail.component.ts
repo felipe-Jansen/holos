@@ -1,12 +1,11 @@
-import { Subscription } from "rxjs";
-import { ClientService } from "src/app/pages/client-page/client.service";
-import { Component, OnInit } from "@angular/core";
+
+import { ClientService } from "../../providers/client.service";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import {
   AlertController,
   LoadingController,
   ModalController,
-  Platform,
 } from "@ionic/angular";
 import { DetailModalComponent } from "./components/detail-modal/detail-modal.component";
 import { Camera, CameraOptions } from "@ionic-native/Camera/ngx";
@@ -26,15 +25,16 @@ export class ClientDetailComponent implements OnInit {
     private route: ActivatedRoute,
     public modalController: ModalController,
     private clientService: ClientService,
-    private platform: Platform,
     private camera: Camera,
     private loadingController: LoadingController,
-    private alertController: AlertController
-  ) {}
+    private alertController: AlertController,
+    private ref: ChangeDetectorRef
+  ) { }
   client: any;
   anexosCache: any;
   descricaoAnexoAtual: string;
   agendaCache: any;
+
   section: string = "info";
 
   ngOnInit() {
@@ -143,10 +143,11 @@ export class ClientDetailComponent implements OnInit {
         data: new Date(),
         descricao: this.descricaoAnexoAtual,
       };
-      console.log(params);
       this.clientService.postAnexo(params).subscribe(
         (data) => {
-          this.anexosCache = [...this.anexosCache, data];
+          console.log(data)
+          this.anexosCache = [...this.anexosCache, data]
+          this.ref.detectChanges()
           this.loadingController.dismiss();
           this.descricaoAnexoAtual = "";
         },
@@ -158,12 +159,12 @@ export class ClientDetailComponent implements OnInit {
     });
   }
 
-  getAnexosCache(anexos: any) {
-    this.anexosCache = anexos;
+  setAnexosCache(anexos: any) {
+    this.anexosCache = [...anexos];
   }
 
-  getAgendaCache(agendamentos: any) {
-    this.agendaCache = agendamentos;
+  setAgendaCache(agendamentos: any) {
+    this.agendaCache = [...agendamentos];
   }
 
   changeInfoTab(event: any) {

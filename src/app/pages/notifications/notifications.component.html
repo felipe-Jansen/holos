@@ -1,0 +1,25 @@
+<app-header nameComponent="Notificações"></app-header>
+
+<ion-content class="notifications-content">
+  <ng-container *ngIf="notifications.length > 0">
+    <ion-item-group>
+      <ion-item-divider sticky>
+        <ion-label>Hoje</ion-label>
+      </ion-item-divider>
+      <ion-item class="notification-item" lines="none" *ngFor="let notification of notifications">
+        <ion-row class="notification-item-wrapper">
+          <ion-col size="2">
+              <img class="notification-image" src="../../../assets/Holos/HOLOS QUADRADA.png" alt="Holos logo">
+          </ion-col>
+          <ion-col class="details-wrapper">
+            <h2 class="details-name">{{ notification.title }}</h2>
+            <p class="details-description">{{ notification.body }}</p>
+          </ion-col>
+          <ion-col size="2" class="date-wrapper">
+            <h3 class="notification-date">23/12/20</h3>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-item-group>
+  </ng-container>
+</ion-content>

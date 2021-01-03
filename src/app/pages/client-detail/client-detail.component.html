@@ -96,8 +96,8 @@
       </ion-col>
       <ion-col size="12" class="client-info">
         <ng-container *ngFor="let prop of client | keyvalue">
-          <ion-row *ngIf="prop.value">
-            <h4>{{ prop.key | uppercase }}:</h4>
+          <ion-row *ngIf="(prop.key | clientProps) && prop.value">
+            <h4>{{ prop.key | clientProps }}:</h4>
             <p *ngIf="prop.key === 'dataDeNascimento'">
               {{ prop.value | date: "dd/MM/yyyy" }}
             </p>
@@ -110,15 +110,15 @@
     <app-agendamento
       *ngSwitchCase="'agenda'"
       [idPatient]="client?.id"
-      (agendamentosEmit)="getAgendaCache($event)"
-      [agendamentosCache]="agendaCache ? agendaCache : ''"
+      (agendamentosEmit)="setAgendaCache($event)"
+      [agendamentos]="agendaCache ? agendaCache : ''"
     >
     </app-agendamento>
     <app-anexos
       *ngSwitchCase="'anexo'"
       [idPatient]="client?.id"
-      (anexosEmit)="getAnexosCache($event)"
-      [anexosCache]="anexosCache ? anexosCache : ''"
+      (anexosEmit)="setAnexosCache($event)"
+      [anexos]="anexosCache ? anexosCache : ''"
     >
     </app-anexos>
     
