@@ -24,16 +24,18 @@ const DIAS = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SAB"];
 })
 export class DayComponent implements OnInit {
   mes: number;
+  ano: number;
   dias = [];
   diasMostrados = 5;
 
-  @Output() choosedDayEmitter = new EventEmitter<number>();
+  @Output() choosedDayEmitter = new EventEmitter<any>();
 
   constructor() {}
 
   ngOnInit() {
     let dataAtual = new Date();
     let diaNumero = dataAtual.getDate();
+    this.ano = dataAtual.getFullYear()
     this.mes = dataAtual.getMonth();
     for (let i = 0; i < this.diasMostrados; i++) {
       this.dias.push({
@@ -48,7 +50,11 @@ export class DayComponent implements OnInit {
 
   chooseDay(event: any) {
     let dayValue = Number(event.detail.value)
-    this.choosedDayEmitter.emit(dayValue)
+    this.choosedDayEmitter.emit({
+      dia: dayValue,
+      mes: this.mes,
+      ano: this.ano
+    })
   }
 
   numberToDay(dayNumber: number): string {

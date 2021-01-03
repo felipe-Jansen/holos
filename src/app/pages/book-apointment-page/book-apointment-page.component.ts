@@ -9,6 +9,8 @@ import { BookApointmentService } from "../../providers/book-apointment.service";
 export class BookApointmentPageComponent implements OnInit {
   choosedHour: string;
   choosedDay: number;
+  choosedMonth: number;
+  choosedYear: number;
   nameClient: string;
   phoneClient: string;
 
@@ -23,7 +25,10 @@ export class BookApointmentPageComponent implements OnInit {
 
   receiveDay(event: any): void {
     console.log("Dia", event);
-    this.choosedDay = event;
+    const { mes, ano, dia } = event
+    this.choosedDay = dia
+    this.choosedMonth = mes
+    this.choosedYear = ano
   }
 
   receiveFormData(event: any) {
@@ -35,6 +40,8 @@ export class BookApointmentPageComponent implements OnInit {
       phone,
       hour: this.choosedHour,
       day: this.choosedDay,
+      month: this.choosedMonth,
+      year: this.choosedYear
     });
   }
 }

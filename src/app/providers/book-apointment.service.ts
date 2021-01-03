@@ -1,5 +1,20 @@
 import { Injectable } from "@angular/core";
 
+const MES = [
+  "Janeiro",
+  "Fevereiro",
+  "Março",
+  "Abril",
+  "Maio",
+  "Junho",
+  "Julho",
+  "Agosto",
+  "Setembro",
+  "Outubro",
+  "Novembro",
+  "Dezembro"
+]
+
 @Injectable({
   providedIn: "root",
 })
@@ -8,17 +23,22 @@ export class BookApointmentService {
   phoneClient: string;
   hour: string;
   day: number;
+  month: number;
+  year: number;
   appointmentType: string;
 
-  constructor() {}
+  constructor() { }
 
   setClient(dataClient: any): void {
     console.log(dataClient);
-    const { name, phone, hour, day } = dataClient;
+    const { name, phone, hour, day, month, year } = dataClient;
+    console.log(month, year)
     this.nameClient = name;
     this.phoneClient = phone;
     this.hour = hour;
     this.day = day;
+    this.month = month
+    this.year = year
   }
 
   getClient(): any {
@@ -27,6 +47,8 @@ export class BookApointmentService {
       phone: this.phoneClient,
       day: this.day,
       hour: this.hour,
+      month: this.month,
+      year: this.year
     };
   }
 
@@ -43,9 +65,7 @@ export class BookApointmentService {
       this.nameClient
     );
     let message = `Oi, eu sou o ${this.nameClient} e gostaria de marcar uma consulta às ${this.hour} do
-    dia ${String(
-      this.day
-    )}. O tipo da consulta é ${this.appointmentType}, e está aqui meu contato: ${this.phoneClient}`;
+    dia ${String(this.day)}, mês ${MES[this.month]} de ${String(this.year)}. O tipo da consulta é ${this.appointmentType}, e está aqui meu contato: ${this.phoneClient}`;
 
     message = encodeURIComponent(message);
 
