@@ -44,7 +44,7 @@ export class ClientDetailComponent implements OnInit {
     });
   }
 
-  async presentUpdateModal() {
+  async presentUpdateModal(): Promise<void> {
     const modal = await this.modalController.create({
       component: DetailModalComponent,
       componentProps: {
@@ -55,7 +55,7 @@ export class ClientDetailComponent implements OnInit {
     await modal.present();
   }
 
-  async presentLoading() {
+  async presentLoading(): Promise<void> {
     const loading = await this.loadingController.create({
       cssClass: "loading",
       message: "Enviando anexo...",
@@ -63,7 +63,7 @@ export class ClientDetailComponent implements OnInit {
     await loading.present();
   }
 
-  async presentAlert() {
+  async presentAlert(): Promise<HTMLIonAlertElement> {
     const alert = await this.alertController.create({
       header: "Dê um nome para seu anexo:",
       inputs: [
@@ -87,7 +87,7 @@ export class ClientDetailComponent implements OnInit {
     return alert;
   }
 
-  async setAnexo() {
+  async setAnexo(): Promise<void> {
     const options: CameraOptions = {
       quality: 100,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
@@ -159,15 +159,15 @@ export class ClientDetailComponent implements OnInit {
     });
   }
 
-  setAnexosCache(anexos: any) {
+  setAnexosCache(anexos: any): void {
     this.anexosCache = [...anexos];
   }
 
-  setAgendaCache(agendamentos: any) {
+  setAgendaCache(agendamentos: any): void {
     this.agendaCache = [...agendamentos];
   }
 
-  changeInfoTab(event: any) {
+  changeInfoTab(event: any): void {
     this.section = event.detail.value;
   }
 }

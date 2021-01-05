@@ -1,14 +1,7 @@
-import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { ClientItemModel } from "../pages/client-page/client.item.model";
-import {
-  Observable,
-  of,
-  forkJoin,
-  throwError,
-  combineLatest,
-  Subscription,
-} from "rxjs";
-import { map, concatMap, first, filter } from "rxjs/operators";
+import { Observable } from "rxjs";
+
 import * as dayjs from "dayjs";
 
 import { HttpClient, HttpHeaders } from "@angular/common/http";
@@ -63,6 +56,10 @@ export class ClientService {
 
   deleteUser(id: number): void {
     this.http.delete<any>(`api/pessoas?id.equals=${id}`);
+  }
+
+  createUser(pessoa: any): any {
+    return this.http.post('api/pessoas', pessoa)
   }
 
   private calcUserAge(dateOfBirth: number): number {

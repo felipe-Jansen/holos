@@ -2,7 +2,6 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { News } from "../interfaces/news";
-import { ResponseNewsAPI } from "../interfaces/responseApi";
 /*
   Generated class for the NewsProvider provider.
 
@@ -11,7 +10,6 @@ import { ResponseNewsAPI } from "../interfaces/responseApi";
 */
 
 const APIURL = "http://newsapi.org/v2/top-headlines";
-const APIKEY = "1bee8432ea4d4ca386313d3d9d771e08";
 
 @Injectable( {
   providedIn: 'root'
@@ -21,10 +19,14 @@ export class NewsProvider {
 
   constructor(public http: HttpClient) {}
 
-  getLatestNews(page: number): Observable<ResponseNewsAPI> {
-    return this.http.get<ResponseNewsAPI>(
-      `${APIURL}?country=pt&apiKey=${APIKEY}&page=${page}`
+  getLatestNews(page: number): Observable<any> {
+    return this.http.get<any>(
+      `https://www.holosodontologia.com.br/wp-json/wp/v2/posts?orderBy=date&page=${page}`
     );
+  }
+
+  getNewsMedia(idMedia: string): Observable<any> {
+    return this.http.get(`https://www.holosodontologia.com.br/wp-json/wp/v2/media/${idMedia}`)
   }
 
   getOneNews(): any {

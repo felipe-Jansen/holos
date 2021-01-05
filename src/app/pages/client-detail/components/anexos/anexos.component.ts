@@ -12,6 +12,7 @@ import {
 import { ClientService } from "src/app/providers/client.service";
 import { PhotoViewer } from "@ionic-native/photo-viewer/ngx";
 import { LoadingController, ToastController } from "@ionic/angular";
+import { anexoInterface } from "src/app/interfaces/anexoInterface";
 
 @Component({
   selector: "app-anexos",
@@ -19,8 +20,8 @@ import { LoadingController, ToastController } from "@ionic/angular";
   styleUrls: ["./anexos.component.scss"],
 })
 export class AnexosComponent implements OnInit, OnDestroy {
-  @Input() idPatient: any;
-  @Input() anexos: any;
+  @Input() idPatient: number;
+  @Input() anexos: Array<anexoInterface>;
   @Output() anexosEmit: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -46,7 +47,7 @@ export class AnexosComponent implements OnInit, OnDestroy {
     console.log("Destruido!")
   }
 
-  async presentLoading() {
+  async presentLoading(): Promise<void> {
     const loading = await this.loadingController.create({
       cssClass: "loading",
       message: "Abrindo pdf...",
@@ -54,7 +55,7 @@ export class AnexosComponent implements OnInit, OnDestroy {
     await loading.present();
   }
 
-  async presentToast() {
+  async presentToast(): Promise<void> {
     const toast = await this.toastController.create({
       message: 'Erro abrindo o PDF! Tente novamente.',
       duration: 2000,
@@ -64,7 +65,7 @@ export class AnexosComponent implements OnInit, OnDestroy {
     toast.present();
   }
 
-  show(anexoAtual: any) {
+  show(anexoAtual: any): void {
     const { anexoContentType, url, descricao } = anexoAtual;
     if (anexoContentType === "application/pdf") {
 
@@ -77,7 +78,7 @@ export class AnexosComponent implements OnInit, OnDestroy {
     }
   }
 
-  downloadAndOpenPDF(anexoURL: string, anexoDescricao: string) {
+  downloadAndOpenPDF(anexoURL: string, anexoDescricao: string): void {
     this.presentLoading()
     let path = this.file.dataDirectory;
     const transfer = this.ft.create();

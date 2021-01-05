@@ -1,14 +1,12 @@
 export interface News {
-    source: {
-      id: String;
-      name: String;
-    };
-    author: String;
-    title: String;
-    description: String;
-    url: String;
-    urlToImage: String;
-    publishedAt: String;
-    content: String;
-  }
-  
+  id: number;
+  date: string;
+  status: string;
+  title: string;
+  content: string;
+  mediumImage: string;
+  thumbnailImage: string;
+  author: {
+    href: string;
+  },
+}

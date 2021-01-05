@@ -1,15 +1,12 @@
-<app-header nameComponent="Blog">
-</app-header>
+<app-header nameComponent="Blog"> </app-header>
 
 <ion-content class="bg-theme" *ngIf="newsDetail">
   <ion-card>
-    <img [src]="newsDetail.urlToImage" alt="news img" />
+    <img [src]="newsDetail.mediumImage" alt="news img" />
     <ion-card-content>
-      <h3 class="text-red">{{ newsDetail.title}}</h3>
-      <span>{{newsDetail.publishedAt | newsDate}}</span>
+      <h3 class="text-red">{{ newsDetail.title }}</h3>
+      <span>{{ newsDetail.date | date: "dd/MM/yyyy" }}</span>
     </ion-card-content>
   </ion-card>
-  <div class="bg-white">
-    <p>{{newsDetail.content}}</p>
-  </div>
+  <div class="bg-white" [innerHTML]="newsDetail.content"></div>
 </ion-content>

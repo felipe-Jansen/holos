@@ -45,7 +45,7 @@ export class DetailModalComponent implements OnInit {
     private router: Router,
     private camera: Camera,
     private file: File
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.selectedAvatar = this.user.foto;
@@ -102,7 +102,7 @@ export class DetailModalComponent implements OnInit {
     });
   }
 
-  updateUser() {
+  updateUser(): void {
     const {
       bairro,
       captacao,
@@ -156,7 +156,7 @@ export class DetailModalComponent implements OnInit {
     this.modalController.dismiss();
   }
 
-  async deleteUser() {
+  async deleteUser(): Promise<void> {
     const alert = await this.alertController.create({
       header: "Confirmar",
       message: "Você quer deletar " + this.user.nome + "?",
@@ -164,7 +164,7 @@ export class DetailModalComponent implements OnInit {
         {
           text: "Não",
           role: "cancel",
-          handler: () => {},
+          handler: () => { },
         },
         {
           text: "Sim",
@@ -180,11 +180,11 @@ export class DetailModalComponent implements OnInit {
     await alert.present();
   }
 
-  dismissModal() {
+  dismissModal(): void {
     this.modalController.dismiss();
   }
 
-  async changePatientImage() {
+  async changePatientImage(): Promise<void> {
     const options: CameraOptions = {
       quality: 100,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,

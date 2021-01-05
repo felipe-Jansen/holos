@@ -1,5 +1,6 @@
 import { ClientService } from "src/app/providers/client.service";
 import { Component, Input, OnInit } from "@angular/core";
+import { agendaInterface } from "src/app/interfaces/agendaInterface";
 
 @Component({
   selector: "app-agendamento-card",
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from "@angular/core";
   styleUrls: ["./agendamento-card.component.scss"],
 })
 export class AgendamentoCardComponent implements OnInit {
-  @Input() agendamento: any;
+  @Input() agendamento: agendaInterface;
   fotoProfissional: string;
   constructor(private clientService: ClientService) {}
 

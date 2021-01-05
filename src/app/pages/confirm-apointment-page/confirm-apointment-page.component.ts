@@ -22,7 +22,7 @@ export class ConfirmApointmentPageComponent implements OnInit {
     this.bookApointmentService.setAppointmentType(type);
   }
 
-  sendWhatsapp() {
+  sendWhatsapp(): void {
     if(this.otherProblem){
       this.bookApointmentService.setAppointmentType(this.otherProblem)
     }

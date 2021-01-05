@@ -3,6 +3,7 @@ import { SigninPageComponent } from './signin-page.component'
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes = [
   {
@@ -17,7 +18,8 @@ const routes = [
   imports: [
     SharedModule,
     HttpClientModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ]
 })
 export class SigninPageModule { }

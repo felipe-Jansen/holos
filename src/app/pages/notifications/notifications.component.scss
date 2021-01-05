@@ -49,7 +49,7 @@
   
       .date-wrapper {
         align-self: flex-start;
-  
+        
         .notification-date {
           margin: 0px;
           font-size: 12px;
@@ -59,3 +59,12 @@
     }
   }
   
+  .no-notifications {
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 90%;
+    text-align: center;
+    
+    color: #c3c3c3;
+
+  }

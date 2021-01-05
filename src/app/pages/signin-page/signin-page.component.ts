@@ -1,35 +1,23 @@
 import { Router } from '@angular/router';
-
-import { Component, OnInit } from "@angular/core";
+import { Cadastro } from '../../interfaces/cadastroInterface'
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { LoginService } from "src/app/providers/login/login.service";
 import { ToastController } from '@ionic/angular';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CadastraService } from '../../providers/cadastra.service';
 
 interface Login {
   login: string;
   senha: string;
 }
 
-interface Cadastro {
-  login: string;
-  firstName: string;
-  lastName?: string;
-  email: string;
-  imageUrl?: string;
-  activated: boolean;
-  langKey: string;
-  createdBy: string;
-  createdDate: string;
-  lastModifiedBy?: string;
-  lastModifiedDate?: string;
-  authorities: [string]
-}
 
 @Component({
   selector: "app-signin-page",
   templateUrl: "./signin-page.component.html",
   styleUrls: ["./signin-page.component.scss"],
 })
-export class SigninPageComponent implements OnInit {
+export class SigninPageComponent implements OnInit, OnDestroy {
   sign: string = "signin";
   isAndroid: boolean = false;
 
@@ -37,19 +25,47 @@ export class SigninPageComponent implements OnInit {
     login: '',
     senha: ''
   }
+  validations = {
+    'nome': [
+      { type: 'required', message: 'Nome é obrigatório!' },
+    ],
+    'senha': [
+      { type: 'required', message: 'Senha é obrigatória!' },
+    ],
+    'email': [
+      { type: 'pattern', message: 'Entre um e-mail válido.' },
+      { type: 'required', message: 'O e-mail é obrigatório!' }
+    ],
+    'login': [
+      { type: 'required', message: 'Login é obrigatório!' }
+    ],
+  };
 
-  whatsappCadastro: string;
-  nomeCadastro: string;
-  senhaCadastro: string;
+  cadastroForm: FormGroup;
 
   constructor(private loginService: LoginService,
     private router: Router,
-    private toastController: ToastController) { }
+    private toastController: ToastController,
+    private cadastraService: CadastraService,
+    private route: Router) { }
 
   ngOnInit() {
-    
+    this.cadastroForm = new FormGroup({
+      nome: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      login: new FormControl('', Validators.required),
+      senha: new FormControl('', Validators.required)
+    })
   }
 
+
+  ngOnDestroy() {
+    console.log("Fui destruido!")
+  }
+  get nomeCadastro() { return this.cadastroForm.get('nome') }
+  get loginCadastro() { return this.cadastroForm.get('login') }
+  get emailCadastro() { return this.cadastroForm.get('email') }
+  get senhaCadastro() { return this.cadastroForm.get('senha') }
 
   async presentToast(message: string) {
     const toast = await this.toastController.create({
@@ -81,5 +97,27 @@ export class SigninPageComponent implements OnInit {
 
 
   cadastrar(): void {
+    const {
+      nome,
+      login,
+      email,
+      senha
+    } = this.cadastroForm.value
+    let cadastro: Cadastro = {
+      firstName: nome,
+      email,
+      login,
+      password: senha,
+      authorities: [
+        "ROLE_USER",
+      ],
+      activated: true,
+      lastName: '',
+      langKey: 'pt-br',
+      imageUrl: null
+    }
+    this.cadastraService.setCadastro(cadastro)
+    this.route.navigate(['/confirmsignup'])
   }
+
 }

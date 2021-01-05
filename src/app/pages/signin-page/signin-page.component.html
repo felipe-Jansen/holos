@@ -33,7 +33,7 @@
           -->
       <div [ngSwitch]="sign">
         <ion-list *ngSwitchCase="'signin'">
-          <form #form="ngForm" (submit)="logar()">
+          <form #formLogin="ngForm" (submit)="logar()">
             <ion-grid size="11" size-sm="10" style="padding: 2rem 0">
               <ion-row>
                 <ion-col class="form-theme">
@@ -62,7 +62,7 @@
                     class="btn-theme-big-red"
                     routerLink="/home"
                     type="submit"
-                    [disabled]="form.invalid"
+                    [disabled]="formLogin.invalid"
                     >Entrar</ion-button
                   >
                 </ion-col>
@@ -83,37 +83,117 @@
           </form>
         </ion-list>
         <ion-list *ngSwitchCase="'signup'">
-          <ion-grid size="11" size-sm="10" style="padding-top: 2rem 0">
-            <ion-row>
-              <ion-col class="form-theme">
-                <ion-input
-                  type="text"
-                  placeholder="Whatsapp"
-                  class="input"
-                ></ion-input>
-                <ion-input
-                  type="text"
-                  placeholder="Nome Completo"
-                  class="input"
-                ></ion-input>
-                <ion-input
-                  type="text"
-                  placeholder="Crie uma senha"
-                  class="input"
-                ></ion-input>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="12">
-                <ion-button
-                  routerLink="/home"
-                  expand="block"
-                  class="btn-theme-big-red"
-                  >Cadastrar</ion-button
-                >
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+          <form
+            #formCadastro="ngForm"
+            [formGroup]="cadastroForm"
+            (submit)="cadastrar()"
+          >
+            <ion-grid size="11" size-sm="10" style="padding-top: 2rem 0">
+              <ion-row>
+                <ion-col class="form-theme">
+                  <ion-input
+                    type="email"
+                    placeholder="E-mail"
+                    class="input"
+                    required
+                    formControlName="email"
+                  ></ion-input>
+                  <div class="error-container">
+                    <ng-container *ngFor="let validation of validations.email">
+                      <div
+                        class="error-message"
+                        *ngIf="
+                          emailCadastro.hasError(validation.type) &&
+                          (emailCadastro.dirty || emailCadastro.touched)
+                        "
+                      >
+                        <ion-icon name="information-circle-outline"></ion-icon>
+                        <span>{{ validation.message }}</span>
+                      </div>
+                    </ng-container>
+                  </div>
+
+                  <ion-input
+                    type="text"
+                    placeholder="Nome Completo"
+                    class="input"
+                    required
+                    formControlName="nome"
+                  ></ion-input>
+                  <div class="error-container">
+                    <ng-container *ngFor="let validation of validations.nome">
+                      <div
+                        class="error-message"
+                        *ngIf="
+                          nomeCadastro.hasError(validation.type) &&
+                          (nomeCadastro.dirty || nomeCadastro.touched)
+                        "
+                      >
+                        <ion-icon name="information-circle-outline"></ion-icon>
+                        <span>{{ validation.message }}</span>
+                      </div>
+                    </ng-container>
+                  </div>
+
+                  <ion-input
+                    type="text"
+                    placeholder="Crie um Login"
+                    class="input"
+                    required
+                    formControlName="login"
+                  ></ion-input>
+                  <div class="error-container">
+                    <ng-container *ngFor="let validation of validations.login">
+                      <div
+                        class="error-message"
+                        *ngIf="
+                          loginCadastro.hasError(validation.type) &&
+                          (loginCadastro.dirty || loginCadastro.touched)
+                        "
+                      >
+                        <ion-icon name="information-circle-outline"></ion-icon>
+                        <span>{{ validation.message }}</span>
+                      </div>
+                    </ng-container>
+                  </div>
+
+                  <ion-input
+                    type="password"
+                    placeholder="Crie uma senha"
+                    class="input"
+                    required
+                    formControlName="senha"
+                  ></ion-input>
+                  <div class="error-container">
+                    <ng-container *ngFor="let validation of validations.senha">
+                      <div
+                        class="error-message"
+                        *ngIf="
+                          senhaCadastro.hasError(validation.type) &&
+                          (senhaCadastro.dirty || senhaCadastro.touched)
+                        "
+                      >
+                        <ion-icon name="information-circle-outline"></ion-icon>
+                        <span>{{ validation.message }}</span>
+                      </div>
+                    </ng-container>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-button
+                    routerLink="/home"
+                    expand="block"
+                    class="btn-theme-big-red"
+                    type="submit"
+                    [disabled]="formCadastro.invalid"
+                    >Cadastrar</ion-button
+                  >
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </form>
         </ion-list>
       </div>
     </div>

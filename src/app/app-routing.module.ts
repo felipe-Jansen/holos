@@ -93,6 +93,11 @@ const routes: Routes = [
 
   },
   {
+    path: "confirmsignup",
+    loadChildren: () => import("./pages/confirmsignup/confirmsignup.module")
+      .then(m => m.ConfirmsignupModule)
+  },
+  {
     path: "",
     redirectTo: "home",
     pathMatch: "full",

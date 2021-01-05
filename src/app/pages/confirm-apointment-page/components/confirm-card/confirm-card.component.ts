@@ -14,7 +14,7 @@ export class ConfirmCardComponent implements OnInit {
 
   ngOnInit() {}
 
-  chooseType() {
+  chooseType(): void {
     this.choosedType.emit(this.type);
   }
 }

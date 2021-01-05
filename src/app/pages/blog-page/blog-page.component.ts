@@ -9,7 +9,8 @@ import { NewsProvider } from "../../providers/news.service";
 })
 export class BlogPageComponent implements OnInit {
   newsDetail: News;
-  constructor(private newsService: NewsProvider) {}
+  image: string;
+  constructor(private newsService: NewsProvider) { }
 
   ngOnInit() {
     this.newsDetail = this.newsService.getOneNews();

@@ -22,4 +22,11 @@
       </ion-item>
     </ion-item-group>
   </ng-container>
+
+  <ng-container  *ngIf="notifications.length <= 0">
+    <div class="no-notifications">
+      <h4>Sem notificações recentes...</h4>
+    </div>
+    
+  </ng-container>
 </ion-content>

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { PhotoViewer } from "@ionic-native/photo-viewer/ngx";
 import { GalleryPageComponent } from './gallery-page.component'
 import { RouterModule } from '@angular/router';
+import { SharedModule } from 'src/app/shared.module';
 
 
 const routes = [
@@ -15,7 +15,7 @@ const routes = [
 @NgModule({
   declarations: [GalleryPageComponent],
   imports: [
-    CommonModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   providers: [

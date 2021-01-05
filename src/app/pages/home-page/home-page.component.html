@@ -1,6 +1,6 @@
 <app-header nameComponent="Holos Odontologia"> </app-header>
 <ion-content class="bg-theme">
-  <ion-content >
+  <ion-content>
     <div class="home-bg"></div>
     <ion-grid size="11" size-sm="10">
       <ion-row>
@@ -22,7 +22,7 @@
           <ion-card routerLink="/about">
             <ion-card-content>
               <ion-icon name="medkit-outline"></ion-icon>
-             
+
               <p>Sobre nós</p>
             </ion-card-content>
           </ion-card>
@@ -52,10 +52,14 @@
           </ion-card>
         </ion-col>
         <ion-col size="4">
-          <ion-card routerLink="/client">
+          <ion-card
+            [routerLink]="
+              clientProfile ? ['/client-detail', user?.id] : '/client'
+            "
+          >
             <ion-card-content>
               <ion-icon name="person-outline"></ion-icon>
-              <p>Clientes</p>
+              <p>{{ nomeCard }}</p>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -68,10 +72,10 @@
           </ion-card>
         </ion-col>
         <ion-col size="4">
-          <ion-card routerLink="/availability">
+          <ion-card routerLink="/notifications">
             <ion-card-content>
               <ion-icon name="calendar-outline"></ion-icon>
-              <p>Disponibilidade</p>
+              <p>Notificações</p>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -86,7 +90,7 @@
         <ion-col size="4">
           <ion-card routerLink="/contact">
             <ion-card-content>
-              <ion-icon name="call-outline"></ion-icon> 
+              <ion-icon name="call-outline"></ion-icon>
               <p>Contato</p>
             </ion-card-content>
           </ion-card>

@@ -1,0 +1,177 @@
+<app-header nameComponent="Confirmar Cadastro"></app-header>
+
+<ion-content>
+  <section class="title">
+    <h3>Precisamos de mais algumas informações...</h3>
+  </section>
+  <main>
+    <form
+      class="update-user-form update-user-content"
+      [formGroup]="userForm"
+      (ngSubmit)="cadastraUsuario()"
+    >
+      <ion-row class="select-user-image-row">
+        <ion-col class="user-image-col" size="5">
+          <app-aspect-ratio [ratio]="{ w: 1, h: 1 }">
+            <app-image-shell
+              [display]="'contain'"
+              class="user-image"
+              animation="spinner"
+              [src]="
+                selectedAvatar
+                  ? 'data:image/jpeg;base64,' + selectedAvatar
+                  : '../../../../../assets/Holos/semfoto.jpg'
+              "
+              [alt]="'user image'"
+            ></app-image-shell>
+          </app-aspect-ratio>
+          <ion-button
+            class="change-image-btn"
+            color="secondary"
+            (click)="changePatientImage()"
+          >
+            <ion-icon
+              class="btn-icon"
+              slot="icon-only"
+              name="camera"
+            ></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <section class="user-details-fields fields-section">
+        <ion-list class="inputs-list" lines="full">
+         
+            <div class="form-pedaco">
+            
+              <ion-item class="input-item">
+                <ion-label color="secondary" position="floating">CPF</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="cpf"
+                  simpleMask="999.999.999-99"
+                ></ion-input>
+              </ion-item>
+              <div class="error-container">
+                <ng-container *ngFor="let validation of validations.cpf">
+                  <div
+                    class="error-message"
+                    *ngIf="
+                      userForm.get('cpf').hasError(validation.type) &&
+                      (userForm.get('cpf').dirty || userForm.get('cpf').touched)
+                    "
+                  >
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <span>{{ validation.message }}</span>
+                  </div>
+                </ng-container>
+              </div>
+              <ion-item class="input-item">
+                <ion-label color="secondary" position="floating"
+                  >Whatsapp</ion-label
+                >
+                <ion-input
+                  type="text"
+                  formControlName="whatsapp"
+                  simpleMask="(99)99999-9999"
+                ></ion-input>
+              </ion-item>
+              <div class="error-container">
+                <ng-container *ngFor="let validation of validations.whatsapp">
+                  <div
+                    class="error-message"
+                    *ngIf="
+                      userForm.get('whatsapp').hasError(validation.type) &&
+                      (userForm.get('whatsapp').dirty ||
+                        userForm.get('whatsapp').touched)
+                    "
+                  >
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <span>{{ validation.message }}</span>
+                  </div>
+                </ng-container>
+              </div>
+              <ion-item class="input-item">
+                <ion-label color="secondary" position="floating"
+                  >Cidade</ion-label
+                >
+                <ion-input type="text" formControlName="cidade"></ion-input>
+              </ion-item>
+              <div class="error-container">
+                <ng-container *ngFor="let validation of validations.cidade">
+                  <div
+                    class="error-message"
+                    *ngIf="
+                      userForm.get('cidade').hasError(validation.type) &&
+                      (userForm.get('cidade').dirty || userForm.get('cidade').touched)
+                    "
+                  >
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <span>{{ validation.message }}</span>
+                  </div>
+                </ng-container>
+              </div>
+              <ion-item class="input-item">
+                <ion-label color="secondary" position="floating"
+                  >Bairro</ion-label
+                >
+                <ion-input type="text" formControlName="bairro"></ion-input>
+              </ion-item>
+              <div class="error-container">
+                <ng-container *ngFor="let validation of validations.bairro">
+                  <div
+                    class="error-message"
+                    *ngIf="
+                      userForm.get('bairro').hasError(validation.type) &&
+                      (userForm.get('bairro').dirty || userForm.get('bairro').touched)
+                    "
+                  >
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <span>{{ validation.message }}</span>
+                  </div>
+                </ng-container>
+              </div>
+              <ion-item class="input-item">
+                <ion-label color="secondary" position="floating"
+                  >Endereço</ion-label
+                >
+                <ion-input type="text" formControlName="endereco"></ion-input>
+              </ion-item>
+              <div class="error-container">
+                <ng-container *ngFor="let validation of validations.endereco">
+                  <div
+                    class="error-message"
+                    *ngIf="
+                      userForm.get('endereco').hasError(validation.type) &&
+                      (userForm.get('endereco').dirty || userForm.get('endereco').touched)
+                    "
+                  >
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <span>{{ validation.message }}</span>
+                  </div>
+                  </ng-container>
+              </div>
+              
+            </div>
+         
+        </ion-list>
+      </section>
+
+      <ion-footer>
+        <ion-row class="form-actions-wrapper">
+          <ion-col>
+            <ion-button
+              class="submit-btn"
+              expand="block"
+              color="secondary"
+              type="submit"
+              fill="solid"
+              [disabled]="!userForm.valid"
+              >CADASTRAR E PROSSEGUIR</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </ion-footer>
+    </form>
+  </main>
+</ion-content>
