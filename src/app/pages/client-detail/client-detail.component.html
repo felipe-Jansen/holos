@@ -48,10 +48,7 @@
           ></app-text-shell>
         </h2>
         <span class="user-age">
-          <app-text-shell
-            animation="bouncing"
-            [data]="client?.celular ? client.celular : client.telefone"
-          ></app-text-shell>
+          {{ client?.celular ? client.celular : "" }}
         </span>
       </ion-col>
       <ion-col class="actions-col" size="12">
@@ -121,9 +118,14 @@
       [anexos]="anexosCache ? anexosCache : ''"
     >
     </app-anexos>
-    
   </section>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="section==='anexo'" (click)="setAnexo()">
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    *ngIf="section === 'anexo' && !isPatient"
+    (click)="setAnexo()"
+  >
     <ion-fab-button>
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>

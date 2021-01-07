@@ -5,6 +5,8 @@ import { LoginService } from "src/app/providers/login/login.service";
 import { ToastController } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CadastraService } from '../../providers/cadastra.service';
+import { ClientService } from 'src/app/providers/client.service';
+import { Principal } from 'src/app/providers/auth/principal.service';
 
 interface Login {
   login: string;
@@ -47,7 +49,10 @@ export class SigninPageComponent implements OnInit, OnDestroy {
     private router: Router,
     private toastController: ToastController,
     private cadastraService: CadastraService,
-    private route: Router) { }
+    private route: Router,
+    private clientService: ClientService,
+    private principalService: Principal
+  ) { }
 
   ngOnInit() {
     this.cadastroForm = new FormGroup({
@@ -81,8 +86,9 @@ export class SigninPageComponent implements OnInit, OnDestroy {
     const { login, senha } = this.login
     this.loginService.login({ username: login, password: senha, rememberMe: true })
       .then(token => {
-        this.router.navigate(['/home'])
         console.log(token)
+        this.router.navigate(['/home'])
+
       })
       .catch(err => {
         let message = ''
@@ -109,7 +115,7 @@ export class SigninPageComponent implements OnInit, OnDestroy {
       login,
       password: senha,
       authorities: [
-        "ROLE_USER",
+        "ROLE_DENTISTA"
       ],
       activated: true,
       lastName: '',

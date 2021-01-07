@@ -1,0 +1,8 @@
+<div class="carregando" *ngIf="loading">
+  <h4>{{ messageLoading }}</h4>
+  <ion-spinner></ion-spinner>
+</div>
+
+<div class="carregando" *ngIf="!loading && noResults">
+  <h4>{{ messageNoResults }}</h4>
+</div>

@@ -3,7 +3,7 @@
     <name>Holos</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://localhost:8101" />
+    <content src="index.html" />
     <access origin="*" />
     <access launch-external="yes" origin="whatsapp://*" />
     <allow-intent href="http://*/*" />

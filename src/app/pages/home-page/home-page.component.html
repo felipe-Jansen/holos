@@ -1,4 +1,11 @@
-<app-header nameComponent="Holos Odontologia"> </app-header>
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title> Holos Odontologia </ion-title>
+</ion-toolbar>
 <ion-content class="bg-theme">
   <ion-content>
     <div class="home-bg"></div>
@@ -54,7 +61,7 @@
         <ion-col size="4">
           <ion-card
             [routerLink]="
-              clientProfile ? ['/client-detail', user?.id] : '/client'
+              clientProfile ? ['/client-detail', patientId] : '/client'
             "
           >
             <ion-card-content>

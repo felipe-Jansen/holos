@@ -6,7 +6,6 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  OnDestroy,
   Output,
 } from "@angular/core";
 import { ClientService } from "src/app/providers/client.service";
@@ -19,10 +18,13 @@ import { anexoInterface } from "src/app/interfaces/anexoInterface";
   templateUrl: "./anexos.component.html",
   styleUrls: ["./anexos.component.scss"],
 })
-export class AnexosComponent implements OnInit, OnDestroy {
+export class AnexosComponent implements OnInit {
   @Input() idPatient: number;
   @Input() anexos: Array<anexoInterface>;
   @Output() anexosEmit: EventEmitter<any> = new EventEmitter();
+
+  loading: boolean = true;
+  noResults: boolean = false;
 
   constructor(
     private clientService: ClientService,
@@ -37,15 +39,27 @@ export class AnexosComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.log("entrei onInit");
     if (!this.anexos) {
+      this.loading = true
       this.clientService.getAnexos(this.idPatient).subscribe((data: any) => {
+        console.log(data)
+        this.loading = false
         this.anexosEmit.emit(data);
-      });
+        if (data.length === 0) {
+          this.noResults = true
+        }
+      },
+        err => {
+          console.log(err)
+          this.loading = false
+        });
+    } else {
+      this.loading = false;
+      if (this.anexos.length === 0) {
+        this.noResults = true
+      }
     }
   }
 
-  ngOnDestroy() {
-    console.log("Destruido!")
-  }
 
   async presentLoading(): Promise<void> {
     const loading = await this.loadingController.create({

@@ -13,17 +13,33 @@ export class AgendamentoComponent implements OnInit {
   @Input() idPatient: number;
   @Input() agendamentos: Array<agendaInterface>;
   @Output() agendamentosEmit = new EventEmitter();
+
+  loading: boolean = true;
+  noResults: boolean = false;
+
   constructor(
     private clientService: ClientService,
     private popoverController: PopoverController
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (!this.agendamentos) {
       this.clientService.getAgenda(this.idPatient).subscribe((data) => {
-        console.log(data);
+        this.loading = false
         this.agendamentosEmit.emit(data);
-      });
+        if (data.length === 0) {
+          this.noResults = true
+        }
+      },
+        err => {
+          console.log(err)
+          this.loading = false
+        });
+    } else {
+      this.loading = false;
+      if (this.agendamentos.length === 0) {
+        this.noResults = true
+      }
     }
   }
 
@@ -37,6 +53,6 @@ export class AgendamentoComponent implements OnInit {
       backdropDismiss: true,
     });
     await modal.present();
-   
+
   }
 }

@@ -5,7 +5,7 @@ import { AlertController, ModalController } from "@ionic/angular";
 import { ClientItemModel } from "src/app/pages/client-page/client.item.model";
 import { ClientService } from "src/app/providers/client.service";
 import { Camera, CameraOptions } from "@ionic-native/Camera/ngx";
-import { File } from "@ionic-native/file/ngx";
+
 
 @Component({
   selector: "app-detail-modal",
@@ -14,7 +14,7 @@ import { File } from "@ionic-native/file/ngx";
 })
 export class DetailModalComponent implements OnInit {
   @Input() user: ClientItemModel;
-
+  @Input() isPatient: boolean;
   updateUserForm: FormGroup;
   selectedAvatar: string;
   meses = "JAN,FEV,MAR,ABR,MAI,JUN,JUL,AGO,SET,OUT,NOV,DEZ";
@@ -44,10 +44,10 @@ export class DetailModalComponent implements OnInit {
     private alertController: AlertController,
     private router: Router,
     private camera: Camera,
-    private file: File
   ) { }
 
   ngOnInit() {
+    console.log(this.isPatient)
     this.selectedAvatar = this.user.foto;
     const {
       bairro,
@@ -81,13 +81,11 @@ export class DetailModalComponent implements OnInit {
       celular: new FormControl(celular),
       cep: new FormControl(cep, Validators.minLength(9)),
       cidade: new FormControl(cidade),
-      cpf: new FormControl(cpf, Validators.minLength(14)),
       cro: new FormControl(cro),
       dataDeNascimento: new FormControl(dataDeNascimento),
       email: new FormControl(email, Validators.email),
       endereco: new FormControl(endereco),
       indicacao: new FormControl(indicacao),
-      nome: new FormControl(nome),
       nomeMae: new FormControl(nomeMae),
       nomePai: new FormControl(nomePai),
       numero: new FormControl(numero),
@@ -99,61 +97,22 @@ export class DetailModalComponent implements OnInit {
       telefone: new FormControl(telefone),
       uf: new FormControl(uf),
       whatsapp: new FormControl(whatsapp, Validators.minLength(13)),
+      nome: new FormControl(nome),
+      cpf: new FormControl(cpf, !this.isPatient ? Validators.minLength(14) : Validators.nullValidator)
     });
+
   }
 
   updateUser(): void {
-    const {
-      bairro,
-      captacao,
-      celular,
-      cep,
-      cidade,
-      cpf,
-      cro,
-      dataDeNascimento,
-      email,
-      endereco,
-      indicacao,
-      nome,
-      nomeMae,
-      nomePai,
-      numero,
-      observacao,
-      perfil,
-      profissao,
-      rg,
-      sexo,
-      telefone,
-      uf,
-      whatsapp,
-    } = this.updateUserForm.value;
-    this.user.foto = this.selectedAvatar;
-    this.user.bairro = bairro;
-    this.user.captacao = captacao;
-    this.user.celular = celular;
-    this.user.cep = cep;
-    this.user.cidade = cidade;
-    this.user.cpf = cpf;
-    this.user.cro = cro;
-    this.user.dataDeNascimento = dataDeNascimento;
-    this.user.email = email;
-    this.user.endereco = endereco;
-    this.user.indicacao = indicacao;
-    this.user.nome = nome;
-    this.user.nomeMae = nomeMae;
-    this.user.nomePai = nomePai;
-    this.user.numero = numero;
-    this.user.observacao = observacao;
-    this.user.profissao = profissao;
-    this.user.rg = rg;
-    this.user.sexo = sexo;
-    this.user.telefone = telefone;
-    this.user.uf = uf;
-    this.user.whatsapp = whatsapp;
-
-    this.clientService.updateUser(this.user);
-    this.modalController.dismiss();
+    const { userId, id } = this.user
+    // pegando todos os valores do form e adicionando o id do paciente
+    this.clientService.updateUser({ ...this.updateUserForm.value, id, userId }).subscribe(data => {
+      console.log(data)
+      // mandando o paciente atualizado para seu componente pai
+      this.modalController.dismiss(data);
+    }, err => {
+      console.log(err)
+    })
   }
 
   async deleteUser(): Promise<void> {
@@ -181,7 +140,7 @@ export class DetailModalComponent implements OnInit {
   }
 
   dismissModal(): void {
-    this.modalController.dismiss();
+    this.modalController.dismiss(this.user);
   }
 
   async changePatientImage(): Promise<void> {

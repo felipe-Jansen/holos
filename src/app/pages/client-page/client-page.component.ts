@@ -14,6 +14,9 @@ export class ClientPageComponent implements OnInit {
   totalUsers: Array<ClientItemModel>;
   actualPage: number = 1;
 
+  loading: boolean = true;
+  noResults: boolean = false;
+
   constructor(public clientService: ClientService) {}
 
   ngOnDestroy(): void {
@@ -24,6 +27,7 @@ export class ClientPageComponent implements OnInit {
     this.searchQuery = "";
 
     this.clientService.getPagedClients(this.actualPage).subscribe((data) => {
+      this.loading = false;
       console.log(data);
       // primeira pagina da paginacao
       this.users = data;
@@ -46,13 +50,16 @@ export class ClientPageComponent implements OnInit {
   searchClient(): void {
     if (this.interval !== 0) clearTimeout(this.interval);
     if (this.searchQuery !== "") {
+      this.loading = true;
       this.interval = setTimeout(() => {
         this.clientService.findByName(this.searchQuery).subscribe(
           (data: ClientItemModel[]) => {
+            this.loading = false
             this.totalUsers = this.users;
             this.users = data;
           },
           (error: any) => {
+            this.loading = false
             console.log(error);
           }
         );

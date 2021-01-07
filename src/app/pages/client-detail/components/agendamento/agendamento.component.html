@@ -25,11 +25,13 @@
       <p>{{ item.horaFinal | date: 'h:mm'}}</p>
     </div>
   </div>
-  <div class="carregando" *ngIf="agendamentos === ''">
-    <h4>Carregando Agenda...</h4>
-    <ion-spinner name="crescent"></ion-spinner>
-  </div>
-  <div class="sem-agenda" *ngIf="agendamentos.length === 0 && agendamentos!== ''">
-    <h4>O paciente não possui agenda</h4>
-  </div>
+  <app-loading
+    [messageLoading]="'Carregando agenda...'"
+    [messageNoResults]="'Esse paciente não possui agenda.'"
+    [loading]="loading"
+    [noResults]="noResults"
+  >
+
+
+  </app-loading>
 </section>

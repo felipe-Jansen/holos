@@ -44,11 +44,11 @@
 
     <section class="user-details-fields fields-section">
       <ion-list class="inputs-list" lines="full">
-        <ion-item class="input-item">
+        <ion-item class="input-item" *ngIf="!isPatient">
           <ion-label color="secondary" position="floating">Nome</ion-label>
           <ion-input type="text" formControlName="nome"></ion-input>
         </ion-item>
-        <ion-item class="input-item">
+        <ion-item class="input-item" *ngIf="!isPatient">
           <ion-label color="secondary" position="floating">CPF</ion-label>
           <ion-input
             type="text"
@@ -56,7 +56,7 @@
             simpleMask="999.999.999-99"
           ></ion-input>
         </ion-item>
-        <div class="error-container">
+        <div class="error-container" *ngIf="!isPatient">
           <ng-container *ngFor="let validation of validations.cpf">
             <div
               class="error-message"

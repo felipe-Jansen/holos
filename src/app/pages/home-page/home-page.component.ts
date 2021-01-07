@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Principal } from 'src/app/providers/auth/principal.service';
+import { ClientService } from 'src/app/providers/client.service';
+import { LoginService } from 'src/app/providers/login/login.service';
 
 @Component({
   selector: 'app-home-page',
@@ -8,18 +11,33 @@ import { Principal } from 'src/app/providers/auth/principal.service';
 })
 export class HomePageComponent implements OnInit {
   clientProfile: boolean = true;
-  user: any;
+  patientId: number;
   nomeCard = 'Meu Perfil'
 
-  constructor(private principalService: Principal) { }
+  constructor(private principalService: Principal, private clientService: ClientService,
+    private loginService: LoginService,
+    private route: Router) { }
 
   ngOnInit() {
     // Identificando se o perfil é de dentista ou de um paciente
     this.principalService.identity()
-      .then(data => {
-        console.log(data)
-        this.clientProfile = true
-        this.user = data
+      .then(dataAccount => {
+        console.log(dataAccount)
+        if (dataAccount.createdBy === "system") {
+          this.clientProfile = false
+          this.nomeCard = "Pacientes"
+        } else {
+          this.clientProfile = true
+          console.log(dataAccount.id)
+          this.clientService.findByParam('userId', dataAccount.id).subscribe(dataPatient => {
+            console.log(dataPatient)
+            this.patientId = dataPatient[0].id
+          }
+            , err => {
+              console.log(err)
+            })
+        }
+
       })
       .catch(err => {
         console.log(err)
@@ -27,7 +45,12 @@ export class HomePageComponent implements OnInit {
         this.nomeCard = "Pacientes"
       }
 
-    )
+      )
   }
 
+
+  logout(): void {
+    this.loginService.logout()
+    this.route.navigate(['/sign'])
+  }
 }

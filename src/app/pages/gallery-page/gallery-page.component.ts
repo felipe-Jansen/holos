@@ -14,7 +14,6 @@ export class GalleryPageComponent implements OnInit {
   ngOnInit() {}
 
   showImage(url: string) {
-    console.log("oi");
     console.log(url);
     
     this.photoViewer.show(decodeURIComponent(this.file.applicationDirectory + url), "Holos", {

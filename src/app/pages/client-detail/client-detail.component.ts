@@ -10,6 +10,9 @@ import {
 import { DetailModalComponent } from "./components/detail-modal/detail-modal.component";
 import { Camera, CameraOptions } from "@ionic-native/Camera/ngx";
 import { FileEntry } from "@ionic-native/file/ngx";
+import { agendaInterface } from '../../interfaces/agendaInterface'
+import { anexoInterface } from '../../interfaces/anexoInterface'
+import { Principal } from "src/app/providers/auth/principal.service";
 
 declare var window: any;
 @Component({
@@ -28,12 +31,14 @@ export class ClientDetailComponent implements OnInit {
     private camera: Camera,
     private loadingController: LoadingController,
     private alertController: AlertController,
-    private ref: ChangeDetectorRef
+    private ref: ChangeDetectorRef,
+    private principalService: Principal
   ) { }
   client: any;
-  anexosCache: any;
+  anexosCache: Array<anexoInterface>;
   descricaoAnexoAtual: string;
-  agendaCache: any;
+  agendaCache: Array<agendaInterface>;
+  isPatient: boolean = false;
 
   section: string = "info";
 
@@ -41,6 +46,12 @@ export class ClientDetailComponent implements OnInit {
     this.route.data.subscribe((data) => {
       console.log(data);
       this.client = data.data[0];
+      this.principalService.identity()
+        .then(data => {
+          if (data.createdBy !== 'system') {
+            this.isPatient = true
+          }
+        })
     });
   }
 
@@ -49,11 +60,21 @@ export class ClientDetailComponent implements OnInit {
       component: DetailModalComponent,
       componentProps: {
         user: this.client,
+        isPatient: this.isPatient
       },
       swipeToClose: true,
     });
     await modal.present();
+    // Quando o modal termina sua função, ele manda o paciente atualizado para que a view
+    // desse componente seja atualizada tbm
+    modal.onDidDismiss()
+      .then(data => {
+        console.log(data)
+        this.client = data['data']
+      })
   }
+
+
 
   async presentLoading(): Promise<void> {
     const loading = await this.loadingController.create({
@@ -144,7 +165,7 @@ export class ClientDetailComponent implements OnInit {
         descricao: this.descricaoAnexoAtual,
       };
       this.clientService.postAnexo(params).subscribe(
-        (data) => {
+        (data: anexoInterface) => {
           console.log(data)
           this.anexosCache = [...this.anexosCache, data]
           this.ref.detectChanges()

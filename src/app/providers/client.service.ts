@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 
 import * as dayjs from "dayjs";
 
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root",
@@ -24,22 +24,19 @@ export class ClientService {
     return this.http.get<ClientItemModel>(`api/pessoas?id.equals=${id}`);
   }
 
+  findByParam(nameParam: string, valueParam: number | string) {
+    return this.http.get<ClientItemModel>(`api/pessoas?${nameParam}.equals=${valueParam}`);
+  }
+
   findByName(name: string): any {
     return this.http.get<any>(`api/pessoas?nome.contains=${name}`);
   }
 
-  updateUser(client: any): void {
-    const { id } = client;
-
-    console.log(id);
-    this.http.put<any>(`api/pessoas?id.equals=${id}`, client).subscribe(
-      (data) => {
-        console.log(data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  updateUser(fields: any): Observable<any> {
+    // Tem que fazer isso se não dá erro de conversão
+    if (fields.dataDeNascimento)
+      fields.dataDeNascimento = new Date(fields.dataDeNascimento)
+    return this.http.put<any>(`api/pessoas`, fields)
   }
 
   getAnexos(id: number): any {

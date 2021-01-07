@@ -15,12 +15,13 @@
     </ion-row>
   </ion-grid>
 
-  <div class="carregando" *ngIf="anexos === ''">
-    <h4>Carregando Anexos...</h4>
-    <ion-spinner name="crescent"></ion-spinner>
-  </div>
-  <div class="sem-anexos" *ngIf="anexos.length === 0 && anexos !== ''">
-    <h4>O paciente não possui anexos</h4>
-  </div>
+  <app-loading
+    [messageLoading]="'Carregando anexos...'"
+    [messageNoResults]="'Esse paciente não possui anexos.'"
+    [loading]="loading"
+    [noResults]="noResults"
+  >
+
+  </app-loading>
   <div class="spacer"></div>
 </section>
