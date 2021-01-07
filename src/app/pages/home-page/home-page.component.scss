@@ -124,13 +124,19 @@ ion-icon {
   }
 }
 
+@media(max-height: 533px){
+    ion-content{ 
+      padding: 0 !important;
+
+      img.logo {
+        width: 50%;
+        margin-top: 5px
+      }
+    }
+}
+
 @media(max-height: 500px){
   ion-content {
-    padding: 0 !important;
-    img.logo {
-      width: 50%;
-      margin-top: 5px
-    }
     h1.heading-text {
       font-size: 1.2rem;
       margin-bottom: 5px;
@@ -157,6 +163,5 @@ ion-icon {
 }
 
 ion-button{
-  margin-top: 10px;
   height: 40px;
 }

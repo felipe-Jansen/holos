@@ -9,7 +9,7 @@ import { News } from "../interfaces/news";
   and Angular DI.
 */
 
-const APIURL = "http://newsapi.org/v2/top-headlines";
+const APIURL = "https://www.holosodontologia.com.br/wp-json/wp/v2";
 
 @Injectable( {
   providedIn: 'root'
@@ -21,12 +21,12 @@ export class NewsProvider {
 
   getLatestNews(page: number): Observable<any> {
     return this.http.get<any>(
-      `https://www.holosodontologia.com.br/wp-json/wp/v2/posts?orderBy=date&page=${page}`
+      `${APIURL}/posts?orderBy=date&page=${page}`
     );
   }
 
   getNewsMedia(idMedia: string): Observable<any> {
-    return this.http.get(`https://www.holosodontologia.com.br/wp-json/wp/v2/media/${idMedia}`)
+    return this.http.get(`${APIURL}/media/${idMedia}`)
   }
 
   getOneNews(): any {

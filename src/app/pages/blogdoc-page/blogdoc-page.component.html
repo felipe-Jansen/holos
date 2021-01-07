@@ -1,6 +1,14 @@
 <app-header nameComponent="Blog">
 </app-header>
 <ion-content>
+  <app-loading
+    [messageLoading]="'Carregando notícias...'"
+    [messageNoResults]="'Nenhuma notícia encontrada'"
+    [loading]="loading"
+    [noResults]="noResults"
+  >
+
+  </app-loading>
   <ion-card *ngIf="news.length !== 0">
     <ion-row *ngFor="let new of news ">
       <ion-col size="4">

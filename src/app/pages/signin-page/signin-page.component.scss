@@ -21,13 +21,20 @@ ion-content{
 
 @media(max-height: 668px){
   .logo{
-    margin: 20% 0;
+    margin: 15% 0;
   }
 }
 
 @media(max-height: 569px){
   .logo{
     margin: 10% 0;
+  }
+}
+
+@media(max-height: 534px){
+  .input{
+    --padding-top: 10px;
+    --padding-bottom: 10px
   }
 }
 

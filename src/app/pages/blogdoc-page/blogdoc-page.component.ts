@@ -12,6 +12,9 @@ export class BlogdocPageComponent implements OnInit {
   news: News[] = [];
   actualPage = 1;
 
+  loading: boolean = true;
+  noResults: boolean = false;
+
   constructor(private newsService: NewsProvider, private route: Router) { }
 
   ngOnInit(): void {
@@ -29,10 +32,12 @@ export class BlogdocPageComponent implements OnInit {
   }
 
   getNews(event?: any) {
+    this.loading = true
     // requisição retornada pelo Service
     this.newsService
       .getLatestNews(this.actualPage)
       .subscribe((data: any) => {
+        this.loading = false
         let formattedData = data.map(dta => this.formatNews(dta))
         if (event) event.target.complete();
         if (formattedData.length > 0) {
@@ -40,7 +45,7 @@ export class BlogdocPageComponent implements OnInit {
           // a atribuição tem que ser assim para o Angular ficar ciente da mudança de estado
           // por que desse jeito mudamos a referencia do array news, usando push() não
           else this.news = [...this.news, ...formattedData];
-          // se não existirem mais noticias, o enable(false) desativa o infinite scroll
+          // se não existirem mais noticias, o disabled = true desativa o infinite scroll
         } else event.target.disabled = true;
       });
     // o evento não existe quando chamamos pela primeira vez

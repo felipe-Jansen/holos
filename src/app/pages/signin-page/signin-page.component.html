@@ -34,7 +34,7 @@
       <div [ngSwitch]="sign">
         <ion-list *ngSwitchCase="'signin'">
           <form #formLogin="ngForm" (submit)="logar()">
-            <ion-grid size="11" size-sm="10" style="padding: 2rem 0">
+            <ion-grid size="11" size-sm="10">
               <ion-row>
                 <ion-col class="form-theme">
                   <ion-input
@@ -88,7 +88,7 @@
             [formGroup]="cadastroForm"
             (submit)="cadastrar()"
           >
-            <ion-grid size="11" size-sm="10" style="padding-top: 2rem 0">
+            <ion-grid size="11" size-sm="10">
               <ion-row>
                 <ion-col class="form-theme">
                   <ion-input
