@@ -8,7 +8,7 @@ import {
   ModalController,
 } from "@ionic/angular";
 import { DetailModalComponent } from "./components/detail-modal/detail-modal.component";
-import { Camera, CameraOptions } from "@ionic-native/Camera/ngx";
+import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 import { FileEntry } from "@ionic-native/file/ngx";
 import { agendaInterface } from '../../interfaces/agendaInterface'
 import { anexoInterface } from '../../interfaces/anexoInterface'

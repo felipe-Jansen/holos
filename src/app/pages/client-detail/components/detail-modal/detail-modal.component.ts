@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { AlertController, ModalController } from "@ionic/angular";
 import { ClientItemModel } from "src/app/pages/client-page/client.item.model";
 import { ClientService } from "src/app/providers/client.service";
-import { Camera, CameraOptions } from "@ionic-native/Camera/ngx";
+import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 
 
 @Component({

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ItemDetailsPageComponent } from './item-details-page.component'
 import { RouterModule } from '@angular/router';
+import {IonicModule} from '@ionic/angular';
 
 const routes = [
   {
@@ -14,6 +15,7 @@ const routes = [
   declarations: [ItemDetailsPageComponent],
   imports: [
     CommonModule,
+    IonicModule.forRoot(),
     RouterModule.forChild(routes)
   ]
 })

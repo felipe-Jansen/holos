@@ -10,7 +10,7 @@ import { SharedModule } from 'src/app/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShellModule } from 'src/app/shared/shell/shell.module';
 import { SimpleMaskModule } from 'ngx-ion-simple-mask';
-import { Camera } from "@ionic-native/Camera/ngx";
+import { Camera } from "@ionic-native/camera/ngx";
 import { File } from "@ionic-native/file/ngx";
 import { FileTransfer } from "@ionic-native/file-transfer/ngx";
 import { FileOpener } from "@ionic-native/file-opener/ngx";

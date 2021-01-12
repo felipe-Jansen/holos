@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Cadastro } from '../../interfaces/cadastroInterface'
 import { CadastraService } from '../../providers/cadastra.service'
-import { Camera, CameraOptions } from "@ionic-native/Camera/ngx";
+import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 import { ClientService } from 'src/app/providers/client.service';
 import { LoginService } from 'src/app/providers/login/login.service';
 import { Router } from '@angular/router';
